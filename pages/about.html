@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Retro Canvas Wedding Photography</title>
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <style>
+    /* ── TEAM SECTION ── */
+    .team-section {
+      padding: var(--gap-xl) var(--gap-lg) 0;
+      text-align: center;
+    }
+    .team-meta {
+      font-size: 13px;
+      color: var(--mist);
+      letter-spacing: 0.04em;
+      margin-top: -8px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      background: var(--warm);
+      padding: 3px;
+      margin: var(--gap-md) var(--gap-lg) var(--gap-xl);
+    }
+    .team-card {
+      background: var(--ivory);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+
+    .team-badge {
+      position: absolute;
+      top: 16px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(184,149,106,0.14);
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .team-avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: var(--warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .team-avatar::before {
+      content: attr(data-initials);
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    .team-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    @media (max-width: 960px) {
+      .team-section { padding: var(--gap-lg) 24px 0; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); margin: var(--gap-md) 24px var(--gap-lg); }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="main-nav" class="solid">
+    <a class="nav-logo" href="../index.html">Retro <span>Canvas</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">&#9776;</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Book a Date</a>
+  </nav>
+
+  <!-- ============================================================
+    PAGE HEADER — CUSTOMIZE: heading and subtitle
+  ============================================================ -->
+  <div class="page-banner">
+    <h1>The <em>people</em> behind the lens</h1>
+    <p>Documentary in spirit, film-hearted in soul.</p>
+  </div>
+
+  <!-- ============================================================
+    ABOUT SPLIT LAYOUT
+    CUSTOMIZE: Replace SVG placeholder with your real photo:
+      <img src="../images/photographer.jpg" alt="Your Name" />
+  ============================================================ -->
+  <div class="about-layout">
+    <div class="about-image-block">
+      <!--
+        REPLACE THIS SVG with your photo:
+        <img src="../images/photographer.jpg" alt="Afnan Rahman Arnab" />
+      -->
+      <svg viewBox="0 0 500 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <rect width="500" height="620" fill="#E8E0D2"/>
+        <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+        <rect width="500" height="620" filter="url(#grain)" opacity="0.12"/>
+        <rect x="155" y="240" width="190" height="140" rx="12" fill="#C9B99A" opacity="0.55"/>
+        <rect x="195" y="220" width="80" height="28" rx="6" fill="#C9B99A" opacity="0.45"/>
+        <circle cx="250" cy="310" r="50" fill="#EDE8DF" opacity="0.6"/>
+        <circle cx="250" cy="310" r="36" fill="#C9B99A" opacity="0.45"/>
+        <circle cx="250" cy="310" r="20" fill="#8A847C" opacity="0.5"/>
+        <circle cx="250" cy="310" r="8" fill="#2A2826" opacity="0.6"/>
+        <rect x="200" y="380" width="100" height="180" rx="5" fill="#C9B99A" opacity="0.35"/>
+        <circle cx="250" cy="210" r="60" fill="#C9B99A" opacity="0.4"/>
+        <radialGradient id="lgt" cx="50%" cy="30%"><stop offset="0%" stop-color="white" stop-opacity="0.4"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient>
+        <rect width="500" height="620" fill="url(#lgt)"/>
+      </svg>
+    </div>
+
+    <div class="about-text-block">
+      <!-- CUSTOMIZE: Photographer intro and bio -->
+      <p class="section-eyebrow">Hello, I'm Afnan</p><!-- CUSTOMIZE: Your name -->
+      <h2 class="section-heading">Building Retro Canvas,<br><em>frame by frame</em></h2>
+      <!-- CUSTOMIZE: Your story paragraphs -->
+      <p>Retro Canvas started in 2022 with one camera, one couple, and a simple belief — that South Asian weddings deserve to be documented exactly as they feel: loud, colourful, layered with ritual, and full of people who love you.</p>
+      <p>Since then we've grown into a small, dedicated team based in Dhaka, working across Bangladesh and beyond. Photographers, cinematographers, editors — every person on this team is here because they care about getting it right, not just getting it done.</p>
+      <p>When I'm not on set, I'm probably planning the next wedding, backing up hard drives late at night, or arguing with the team about which take made the final cut.</p>
+      <!-- CUSTOMIZE: Your signature -->
+      <div class="about-signature">Afnan Rahman Arnab</div>
+      <a class="btn-primary" href="contact.html">Work with us</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    MEET THE TEAM — CUSTOMIZE: names, roles, initials
+  ============================================================ -->
+  <div class="team-section">
+    <p class="section-eyebrow">The people behind every frame</p>
+    <h2 class="section-heading">Meet the <em>team</em></h2>
+    <p class="team-meta">Est. 2022 · Based in Dhaka, Bangladesh · Serving weddings across South Asia</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <span class="team-badge">Founder</span>
+      <div class="team-avatar" data-initials="AR"></div>
+      <p class="team-name">Afnan Rahman Arnab</p>
+      <p class="team-role">Founder &amp; Lead Photographer</p>
+    </div>
+    <div class="team-card">
+      <span class="team-badge">Co-Founder</span>
+      <div class="team-avatar" data-initials="SR"></div>
+      <p class="team-name">Sanjida Rahman</p>
+      <p class="team-role">Co-Founder &amp; Manager</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" data-initials="AU"></div>
+      <p class="team-name">Authy</p>
+      <p class="team-role">Customer Relationship Officer</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" data-initials="ZP"></div>
+      <p class="team-name">Zihad Prodhan</p>
+      <p class="team-role">Lead Photographer</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" data-initials="SI"></div>
+      <p class="team-name">Syful Islam</p>
+      <p class="team-role">Lead Cinematographer</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" data-initials="NS"></div>
+      <p class="team-name">Nazmuz Shakib</p>
+      <p class="team-role">Senior Photo Editor</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" data-initials="RY"></div>
+      <p class="team-name">Ryhan</p>
+      <p class="team-role">Senior Cinema Editor</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    VALUES — CUSTOMIZE: titles and descriptions
+  ============================================================ -->
+  <div class="values-strip">
+    <div class="value-item">
+      <span class="value-num">I</span>
+      <p class="value-title">Presence over perfection</p>
+      <p class="value-desc">We never interrupt your day to manufacture a pose. We move with you, not around you.</p>
+    </div>
+    <div class="value-item">
+      <span class="value-num">II</span>
+      <p class="value-title">Film-inspired always</p>
+      <p class="value-desc">Every image is edited to honour the warmth and depth of analogue photography — timeless, never trendy.</p>
+    </div>
+    <div class="value-item">
+      <span class="value-num">III</span>
+      <p class="value-title">Relationship first</p>
+      <p class="value-desc">We meet every couple before we photograph them. Comfort in front of our lens is not optional — it's the work.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    PRESS — CUSTOMIZE: Replace with your real press mentions
+  ============================================================ 
+  <div class="press-section">
+    <p class="press-label">Featured In</p>
+    <div class="press-logos">
+      <span>Vogue Weddings</span>
+      <span>Junebug Weddings</span>
+      <span>Rock My Wedding</span>
+      <span>Green Wedding Shoes</span>
+    </div>
+  </div>-->
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="footer-logo" href="../index.html">Retro <span>Canvas</span></a>
+        <p>Wedding photography rooted in<br>film, feeling, and honesty.</p>
+      </div>
+      <div class="footer-nav">
+        <strong>Navigate</strong>
+        <a href="../index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <strong>Say Hello</strong>
+        <a href="mailto:rc.retrocanvas@gmail.com">rc.retrocanvas@gmail.com</a>
+        <a href="tel:+8801887303536">+880 1887-303536</a>
+        <span>Dhaka, Bangladesh · Worldwide</span>
+      </div>
+      <div class="footer-social">
+        <strong>Follow Along</strong>
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">Pinterest</a>
+        <a href="#" target="_blank">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Retro Canvas. All rights reserved.</span>
+      <span>Designed with love in San Francisco.</span>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>
