@@ -98,23 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
       ]
     },
     {
-      couple:   'Hasan & Mitu',
-      location: 'Sylhet, Bangladesh',
-      cover:    '../source/Portfolio/Portrait/hasan-mitu/cover.jpg',
-      photos: [
-        '../source/Portfolio/Portrait/hasan-mitu/01.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/02.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/03.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/04.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/05.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/06.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/07.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/08.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/09.jpg',
-        '../source/Portfolio/Portrait/hasan-mitu/10.jpg',
-      ]
-    },
-    {
       couple:   'Rubaiya & Rizon',
       location: 'Dhaka, Bangladesh',
       cover:    '../source/Portfolio/Portrait/rubaiya-rizon/cover.jpg',
@@ -139,6 +122,23 @@ document.addEventListener('DOMContentLoaded', function () {
         '../source/Portfolio/Portrait/rubaiya-rizon/18.jpg',
         '../source/Portfolio/Portrait/rubaiya-rizon/19.jpg',
         '../source/Portfolio/Portrait/rubaiya-rizon/20.jpg',
+      ]
+    },
+    {
+      couple:   'Hasan & Mitu',
+      location: 'Sylhet, Bangladesh',
+      cover:    '../source/Portfolio/Portrait/hasan-mitu/cover.jpg',
+      photos: [
+        '../source/Portfolio/Portrait/hasan-mitu/01.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/02.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/03.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/04.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/05.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/06.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/07.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/08.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/09.jpg',
+        '../source/Portfolio/Portrait/hasan-mitu/10.jpg',
       ]
     },
     {
