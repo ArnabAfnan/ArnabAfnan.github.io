@@ -8,7 +8,113 @@
   <link rel="stylesheet" href="../css/pages.css" />
   <style>
     /* ── TEAM SECTION ── */
-    
+    .team-section {
+      padding: var(--gap-xl) var(--gap-lg) 0;
+      text-align: center;
+    }
+    .team-meta {
+      font-size: 13px;
+      color: var(--mist);
+      letter-spacing: 0.04em;
+      margin-top: -8px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      background: var(--warm);
+      padding: 3px;
+      margin: var(--gap-md) var(--gap-lg) var(--gap-xl);
+    }
+    .team-card {
+      background: var(--ivory);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+
+    .team-badge {
+      position: absolute;
+      top: 16px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(184,149,106,0.14);
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── AVATAR: circle that holds either a photo or initials ── */
+    .team-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--warm);
+      border: 2px solid var(--dust);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    /* Real photo fills the circle perfectly */
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* Initials fallback — shown when src points to placeholder */
+    .team-avatar .initials {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    .team-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    /* Founder large photo block */
+    .founder-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    @media (max-width: 960px) {
+      .team-section { padding: var(--gap-lg) 24px 0; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); margin: var(--gap-md) 24px var(--gap-lg); }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 420px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -221,12 +327,12 @@
   <footer id="site-footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="footer-logo" href="index.html">Retro <span>Canvas</span></a>
+        <a class="footer-logo" href="../index.html">Retro <span>Canvas</span></a>
         <p>Wedding photography rooted in<br>film, feeling, and honesty.</p>
       </div>
       <div class="footer-nav">
         <strong>Navigate</strong>
-        <a href="index.html">Home</a>
+        <a href="../index.html">Home</a>
         <a href="portfolio.html">Portfolio</a>
         <a href="pricing.html">Pricing</a>
         <a href="about.html">About Us</a>
