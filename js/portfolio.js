@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       couple:    'Addrita & Sefat',
       location:  'Dhaka, Bangladesh',
-      youtubeId: 'Bn9YcfOD53s',   // ← replace with your real YouTube ID
+      youtubeId: 'GyEQMJ_WdyE',   // ← replace with your real YouTube ID
     },
     {
       couple:    'Borno & Trina',
