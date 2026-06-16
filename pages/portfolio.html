@@ -6,6 +6,7 @@
   <title>Portfolio — Retro Canvas Wedding Photography</title>
   <link rel="stylesheet" href="../css/global.css" />
   <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/portfolio.css" />
 </head>
 <body>
 
@@ -23,34 +24,144 @@
   </nav>
 
   <!-- ============================================================
-    PAGE HEADER — CUSTOMIZE: title and subtitle
+    PAGE BANNER
   ============================================================ -->
   <div class="page-banner">
     <h1>The <em>Work</em></h1>
-    <p>A selection of weddings across Dhaka, Chittagong, Sylhet, Rongpur, Jessore and beyond.</p>
+    <p>Portraits, films, and ceremonies across Dhaka, Chittagong, Sylhet and beyond.</p>
   </div>
 
   <!-- ============================================================
-    FILTER BUTTONS
-    data-filter must match 'cat' values in gallery.js
-    CUSTOMIZE: Add/remove buttons + matching items in gallery.js
+    SECTION TABS
   ============================================================ -->
-  <div class="gallery-filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="portraits">Portraits</button>
-    <button class="filter-btn" data-filter="film">Film</button>
-    <button class="filter-btn" data-filter="ceremony">Ceremony</button>
+  <div class="pf-tabs" role="tablist">
+    <button class="pf-tab active" data-section="portraits" role="tab" aria-selected="true">Portraits</button>
+    <button class="pf-tab" data-section="film" role="tab" aria-selected="false">Film</button>
+    <button class="pf-tab" data-section="ceremony" role="tab" aria-selected="false">Ceremony</button>
   </div>
 
-  <!-- Gallery items injected here by gallery.js -->
-  <div class="gallery-grid" id="gallery-grid"></div>
+  <!-- ============================================================
+    SECTION 1 — PORTRAITS
+    Albums grid → click opens photo lightbox
+  ============================================================ -->
+  <section class="pf-section active" id="section-portraits">
 
+    <div class="pf-section-header">
+      <p class="pf-section-eyebrow">Portrait Sessions</p>
+      <h2 class="pf-section-title">Moments <em>Between</em> Two</h2>
+      <p class="pf-section-sub">Select an album to view the full session.</p>
+    </div>
+
+    <!-- Album cards — injected by portfolio.js via PORTRAIT_ALBUMS -->
+    <div class="albums-grid" id="albums-grid"></div>
+
+    <!-- Album lightbox (photo viewer) -->
+    <div id="album-lightbox" aria-modal="true" role="dialog">
+      <div class="alb-backdrop"></div>
+      <div class="alb-panel">
+        <div class="alb-header">
+          <div class="alb-meta">
+            <span class="alb-couple" id="alb-couple-name"></span>
+            <span class="alb-location" id="alb-location-name"></span>
+          </div>
+          <button class="alb-close" aria-label="Close album">&times;</button>
+        </div>
+        <div class="alb-grid" id="alb-photo-grid"></div>
+        <!-- Full photo lightbox inside album -->
+        <div class="alb-photo-viewer" id="alb-photo-viewer">
+          <div class="apv-backdrop"></div>
+          <button class="apv-close" aria-label="Close photo">&times;</button>
+          <button class="apv-prev" aria-label="Previous">&#8592;</button>
+          <button class="apv-next" aria-label="Next">&#8594;</button>
+          <div class="apv-img-wrap">
+            <img src="" alt="" id="apv-img" />
+          </div>
+          <div class="apv-counter" id="apv-counter"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+    SECTION 2 — FILM
+    YouTube embeds with thumbnail + title + desc
+  ============================================================ -->
+  <section class="pf-section" id="section-film">
+
+    <div class="pf-section-header">
+      <p class="pf-section-eyebrow">Cinematic Films</p>
+      <h2 class="pf-section-title">Stories <em>in Motion</em></h2>
+      <p class="pf-section-sub">Each film is a full day distilled into minutes.</p>
+    </div>
+
+    <!-- Film cards — injected by portfolio.js via FILMS -->
+    <div class="films-grid" id="films-grid"></div>
+
+    <!-- YouTube modal -->
+    <div id="yt-modal" aria-modal="true" role="dialog">
+      <div class="yt-backdrop"></div>
+      <div class="yt-content">
+        <button class="yt-close" aria-label="Close video">&times;</button>
+        <div class="yt-embed-wrap">
+          <iframe id="yt-iframe"
+            src=""
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            frameborder="0"
+            title="Wedding film">
+          </iframe>
+        </div>
+        <div class="yt-info">
+          <span class="yt-modal-couple" id="yt-modal-couple"></span>
+          <span class="yt-modal-loc" id="yt-modal-loc"></span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+    SECTION 3 — CEREMONY
+    Masonry / grid of selected ceremony photos
+  ============================================================ -->
+  <section class="pf-section" id="section-ceremony">
+
+    <div class="pf-section-header">
+      <p class="pf-section-eyebrow">Ceremonies & Celebrations</p>
+      <h2 class="pf-section-title">The <em>Unguarded</em> Frame</h2>
+      <p class="pf-section-sub">Weddings, engagements, and cultural moments — candid and alive.</p>
+    </div>
+
+    <!-- Ceremony grid — injected by portfolio.js via CEREMONY_PHOTOS -->
+    <div class="ceremony-grid" id="ceremony-grid"></div>
+
+    <!-- Ceremony lightbox -->
+    <div id="ceremony-lightbox" aria-modal="true" role="dialog">
+      <div class="cl-backdrop"></div>
+      <div class="cl-content">
+        <button class="cl-close" aria-label="Close">&times;</button>
+        <button class="cl-prev" aria-label="Previous">&#8592;</button>
+        <button class="cl-next" aria-label="Next">&#8594;</button>
+        <div class="cl-img-wrap">
+          <img src="" alt="" id="cl-img" />
+        </div>
+        <div class="cl-caption" id="cl-caption"></div>
+        <div class="cl-counter" id="cl-counter"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+    FOOTER CTA
+  ============================================================ -->
   <div class="gallery-cta">
     <p>Each wedding is one-of-a-kind. Let's talk about yours.</p>
     <a class="btn-primary" href="contact.html">Start a conversation</a>
   </div>
 
-  <!-- FOOTER (same on all pages) -->
+  <!-- FOOTER -->
   <footer id="site-footer">
     <div class="footer-top">
       <div class="footer-brand">
@@ -85,6 +196,6 @@
   </footer>
 
   <script src="../js/nav.js"></script>
-  <script src="../js/gallery.js"></script>
+  <script src="../js/portfolio.js"></script>
 </body>
 </html>
