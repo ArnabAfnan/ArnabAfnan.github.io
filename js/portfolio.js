@@ -152,6 +152,33 @@ document.addEventListener('DOMContentLoaded', function () {
       ]
     },
     {
+      couple:   'Tahiya & Abtahi',
+      location: 'Dhaka, Bangladesh',
+      cover:    '../source/Portfolio/Portrait/tahiya-abtahi/cover.jpg',
+      photos: [
+        '../source/Portfolio/Portrait/tahiya-abtahi/01.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/02.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/03.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/04.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/05.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/06.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/07.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/08.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/09.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/10.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/11.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/12.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/13.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/14.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/15.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/16.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/17.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/18.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/19.jpg',
+        '../source/Portfolio/Portrait/tahiya-abtahi/20.jpg',
+      ]
+    },
+    {
       couple:   'Elam & Misam',
       location: 'Dhaka, Bangladesh',
       cover:    '../source/Portfolio/Portrait/elam-misam/cover.jpg',
@@ -203,23 +230,6 @@ document.addEventListener('DOMContentLoaded', function () {
         '../source/Portfolio/Portrait/elma-misam/18.jpg',
         '../source/Portfolio/Portrait/elma-misam/19.jpg',
         '../source/Portfolio/Portrait/elma-misam/20.jpg',
-      ]
-    },
-    {
-      couple:   'Sabbir & Tania',
-      location: 'Rangpur, Bangladesh',
-      cover:    '../source/Portfolio/Portrait/sabbir-tania/cover.jpg',
-      photos: [
-        '../source/Portfolio/Portrait/sabbir-tania/01.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/02.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/03.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/04.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/05.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/06.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/07.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/08.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/09.jpg',
-        '../source/Portfolio/Portrait/sabbir-tania/10.jpg',
       ]
     },
     {
