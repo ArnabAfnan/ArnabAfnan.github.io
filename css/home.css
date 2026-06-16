@@ -271,7 +271,7 @@
 /* ── HOME ABOUT ──────────────────────────────────────────────── */
 .home-about {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;  /* was 1fr 1fr — photo now takes 1/3, text takes 2/3 */
   min-height: 300px;
 }
 
@@ -279,6 +279,14 @@
   background: var(--warm);
   overflow: hidden;
   position: relative;
+  max-height: 480px;   /* caps the photo height */
+}
+
+.home-about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;   /* keeps face visible */
 }
 .about-img-placeholder { width: 100%; height: 100%; }
 .about-img-placeholder svg { width: 100%; height: 100%; }
