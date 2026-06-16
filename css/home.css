@@ -209,7 +209,7 @@
 .slider-next { right: 32px; }
 
 /* ── FILM STRIP CORNER DETAIL ────────────────────────────────── */
-.film-strip-corner {
+/* .film-strip-corner {
   position: absolute;
   top: 36px; right: 36px;
   display: flex;
@@ -222,9 +222,9 @@
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 2px;
 }
-
+*/
 /* ── SLIDE COUNTER ───────────────────────────────────────────── */
-.slide-counter {
+/* .slide-counter {
   position: absolute;
   bottom: 36px;
   right: 36px;
@@ -237,14 +237,14 @@
   color: rgba(255,255,255,0.5);
 }
 #slide-current { color: var(--white); font-size: 18px; }
-.slide-sep { color: var(--accent); }
+.slide-sep { color: var(--accent); }*/
 
 /* ── STATS BAR ───────────────────────────────────────────────── */
-.stats-bar {
+/* .stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--warm);
-}
+}*/ 
 .stat-item {
   padding: 32px var(--gap-lg);
   border-right: 1px solid var(--warm);
