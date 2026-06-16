@@ -1,6 +1,6 @@
 /* ================================================================
    portfolio.css — Three-section portfolio page
-   Sections: Portraits (albums), Film (YouTube), Ceremony (grid)
+   Sections: Portraits (albums), Film (YouTube), ceremony (grid)
    Requires CSS variables from global.css
    ================================================================ */
 
@@ -563,7 +563,7 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   8.  CEREMONY GRID (CSS grid masonry)
+   8.  ceremony GRID (CSS grid masonry)
    ════════════════════════════════════════════════════════════════ */
 
 .ceremony-grid {
@@ -626,7 +626,7 @@
 
 
 /* ════════════════════════════════════════════════════════════════
-   9.  CEREMONY LIGHTBOX
+   9.  ceremony LIGHTBOX
    ════════════════════════════════════════════════════════════════ */
 
 #ceremony-lightbox {

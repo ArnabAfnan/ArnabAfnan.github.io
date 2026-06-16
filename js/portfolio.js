@@ -1,5 +1,5 @@
 /* ================================================================
-   portfolio.js — Three-section portfolio: Portraits, Film, Ceremony
+   portfolio.js — Three-section portfolio: Portraits, Film, ceremony
    ================================================================
 
    HOW TO CUSTOMIZE YOUR DATA
@@ -17,7 +17,7 @@
         youtubeId: the 11-char YouTube video ID from the URL
         desc     : one-line description
 
-   3. CEREMONY_PHOTOS   — 10–20 photo objects. Each has:
+   3. ceremony_PHOTOS   — 10–20 photo objects. Each has:
         img      : path to photo
         caption  : short caption (couple or event name + location)
         aspect   : 'portrait' | 'landscape' | 'square' (for masonry sizing)
@@ -27,7 +27,7 @@
    Use paths relative to the HTML file, e.g.:
      ../source/Portfolio/Portrait/album-name/cover.jpg
      ../source/Portfolio/Film/thumb-01.jpg
-     ../source/Portfolio/Ceremony/ceremony-01.jpg
+     ../source/Portfolio/ceremony/ceremony-01.jpg
 
    YOUTUBE IDs
    ───────────
@@ -228,28 +228,28 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   ];
 
-  // ── CEREMONY PHOTOS ──────────────────────────────────────────
-  const CEREMONY_PHOTOS = [
-    { img: '../source/Portfolio/Ceremony/ceremony-01.jpg', caption: 'Holud · Rahim & Nadia, Dhaka',       aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-02.jpg', caption: 'Biye · Karim & Sadia, Chittagong',   aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-03.jpg', caption: 'Akd ceremony · Hasan & Mitu, Sylhet', aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-04.jpg', caption: 'Garland exchange · Dhaka',            aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-05.jpg', caption: 'Mehendi night · Farhan & Riya',       aspect: 'square'    },
-    { img: '../source/Portfolio/Ceremony/ceremony-06.jpg', caption: 'Reception hall · Gulshan, Dhaka',     aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-07.jpg', caption: 'Family moment · Sabbir & Tania',      aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-08.jpg', caption: 'First look · Arif & Shirin, Jessore', aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-09.jpg', caption: 'Bou Bhat feast · Dhaka',              aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-10.jpg', caption: 'Candid joy · Chittagong',             aspect: 'square'    },
-    { img: '../source/Portfolio/Ceremony/ceremony-11.jpg', caption: 'Holud · Nabil & Lamia, Dhaka',        aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-12.jpg', caption: 'Stage portraits · Rangpur',           aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-13.jpg', caption: 'Emotional vows · Sylhet',             aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-14.jpg', caption: 'Fire ritual · Jessore',               aspect: 'square'    },
-    { img: '../source/Portfolio/Ceremony/ceremony-15.jpg', caption: 'Night reception · Dhaka',             aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-16.jpg', caption: 'Family blessings · Sylhet',           aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-17.jpg', caption: 'Couple portrait · Chittagong',        aspect: 'portrait'  },
-    { img: '../source/Portfolio/Ceremony/ceremony-18.jpg', caption: 'Mehendi dance · Dhaka',              aspect: 'landscape' },
-    { img: '../source/Portfolio/Ceremony/ceremony-19.jpg', caption: 'Candid laughter · Rangpur',           aspect: 'square'    },
-    { img: '../source/Portfolio/Ceremony/ceremony-20.jpg', caption: 'Bou Bhat send-off · Jessore',        aspect: 'landscape' },
+  // ── ceremony PHOTOS ──────────────────────────────────────────
+  const ceremony_PHOTOS = [
+    { img: '../source/Portfolio/ceremony/ceremony-01.jpg', caption: 'Holud · Rahim & Nadia, Dhaka',       aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-02.jpg', caption: 'Biye · Karim & Sadia, Chittagong',   aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-03.jpg', caption: 'Akd ceremony · Hasan & Mitu, Sylhet', aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-04.jpg', caption: 'Garland exchange · Dhaka',            aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-05.jpg', caption: 'Mehendi night · Farhan & Riya',       aspect: 'square'    },
+    { img: '../source/Portfolio/ceremony/ceremony-06.jpg', caption: 'Reception hall · Gulshan, Dhaka',     aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-07.jpg', caption: 'Family ceremony · Sabbir & Tania',      aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-08.jpg', caption: 'First look · Arif & Shirin, Jessore', aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-09.jpg', caption: 'Bou Bhat feast · Dhaka',              aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-10.jpg', caption: 'Candid joy · Chittagong',             aspect: 'square'    },
+    { img: '../source/Portfolio/ceremony/ceremony-11.jpg', caption: 'Holud · Nabil & Lamia, Dhaka',        aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-12.jpg', caption: 'Stage portraits · Rangpur',           aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-13.jpg', caption: 'Emotional vows · Sylhet',             aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-14.jpg', caption: 'Fire ritual · Jessore',               aspect: 'square'    },
+    { img: '../source/Portfolio/ceremony/ceremony-15.jpg', caption: 'Night reception · Dhaka',             aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-16.jpg', caption: 'Family blessings · Sylhet',           aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-17.jpg', caption: 'Couple portrait · Chittagong',        aspect: 'portrait'  },
+    { img: '../source/Portfolio/ceremony/ceremony-18.jpg', caption: 'Mehendi dance · Dhaka',              aspect: 'landscape' },
+    { img: '../source/Portfolio/ceremony/ceremony-19.jpg', caption: 'Candid laughter · Rangpur',           aspect: 'square'    },
+    { img: '../source/Portfolio/ceremony/ceremony-20.jpg', caption: 'Bou Bhat send-off · Jessore',        aspect: 'landscape' },
   ];
 
 
@@ -447,13 +447,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* ══════════════════════════════════════════════════════════════
-     5.  CEREMONY GRID
+     5.  ceremony GRID
      ══════════════════════════════════════════════════════════════ */
 
   const ceremonyGrid = document.getElementById('ceremony-grid');
 
   if (ceremonyGrid) {
-    ceremonyGrid.innerHTML = CEREMONY_PHOTOS.map(function (photo, idx) {
+    ceremonyGrid.innerHTML = ceremony_PHOTOS.map(function (photo, idx) {
       return (
         '<div class="ceremony-item ' + photo.aspect + '" data-idx="' + idx + '">' +
           '<div class="ceremony-img-wrap">' +
@@ -468,47 +468,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
     ceremonyGrid.querySelectorAll('.ceremony-item').forEach(function (item) {
       item.addEventListener('click', function () {
-        openCeremonyLb(parseInt(item.dataset.idx));
+        openceremonyLb(parseInt(item.dataset.idx));
       });
     });
   }
 
-  // ── Ceremony lightbox ─────────────────────────────────────────
+  // ── ceremony lightbox ─────────────────────────────────────────
   const ceremonyLb  = document.getElementById('ceremony-lightbox');
   const clImg       = document.getElementById('cl-img');
   const clCaption   = document.getElementById('cl-caption');
   const clCounter   = document.getElementById('cl-counter');
   let   clIdx       = 0;
 
-  function openCeremonyLb(idx) {
+  function openceremonyLb(idx) {
     clIdx = idx;
-    renderCeremonyLb();
+    renderceremonyLb();
     ceremonyLb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeCeremonyLb() {
+  function closeceremonyLb() {
     ceremonyLb.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  function renderCeremonyLb() {
-    const photo   = CEREMONY_PHOTOS[clIdx];
+  function renderceremonyLb() {
+    const photo   = ceremony_PHOTOS[clIdx];
     clImg.src     = photo.img;
     clImg.alt     = photo.caption;
     clCaption.textContent = photo.caption;
-    clCounter.textContent = (clIdx + 1) + ' / ' + CEREMONY_PHOTOS.length;
+    clCounter.textContent = (clIdx + 1) + ' / ' + ceremony_PHOTOS.length;
   }
 
-  ceremonyLb.querySelector('.cl-backdrop').addEventListener('click', closeCeremonyLb);
-  ceremonyLb.querySelector('.cl-close').addEventListener('click', closeCeremonyLb);
+  ceremonyLb.querySelector('.cl-backdrop').addEventListener('click', closeceremonyLb);
+  ceremonyLb.querySelector('.cl-close').addEventListener('click', closeceremonyLb);
   ceremonyLb.querySelector('.cl-prev').addEventListener('click', function () {
-    clIdx = (clIdx - 1 + CEREMONY_PHOTOS.length) % CEREMONY_PHOTOS.length;
-    renderCeremonyLb();
+    clIdx = (clIdx - 1 + ceremony_PHOTOS.length) % ceremony_PHOTOS.length;
+    renderceremonyLb();
   });
   ceremonyLb.querySelector('.cl-next').addEventListener('click', function () {
-    clIdx = (clIdx + 1) % CEREMONY_PHOTOS.length;
-    renderCeremonyLb();
+    clIdx = (clIdx + 1) % ceremony_PHOTOS.length;
+    renderceremonyLb();
   });
 
 
@@ -534,11 +534,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'Escape') closeYT();
       return;
     }
-    // Ceremony lightbox
+    // ceremony lightbox
     if (ceremonyLb.classList.contains('open')) {
-      if (e.key === 'Escape')     closeCeremonyLb();
-      if (e.key === 'ArrowLeft')  { clIdx = (clIdx - 1 + CEREMONY_PHOTOS.length) % CEREMONY_PHOTOS.length; renderCeremonyLb(); }
-      if (e.key === 'ArrowRight') { clIdx = (clIdx + 1) % CEREMONY_PHOTOS.length; renderCeremonyLb(); }
+      if (e.key === 'Escape')     closeceremonyLb();
+      if (e.key === 'ArrowLeft')  { clIdx = (clIdx - 1 + ceremony_PHOTOS.length) % ceremony_PHOTOS.length; renderceremonyLb(); }
+      if (e.key === 'ArrowRight') { clIdx = (clIdx + 1) % ceremony_PHOTOS.length; renderceremonyLb(); }
     }
   });
 
