@@ -242,124 +242,82 @@
 .team-meta {
   font-size: 13px;
   color: var(--mist);
+  letter-spacing: 0.04em;
+  margin-top: -8px;
+  margin-bottom: 0;
 }
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  background: var(--warm);
-  padding: 3px;
+  gap: 32px;
+  background: none;
+  padding: 0;
   margin: var(--gap-md) var(--gap-lg) var(--gap-xl);
 }
 .team-card {
-  background: var(--ivory);
-  padding: 36px 20px 36px;   
+  background: none;
+  padding: 0;
+  text-align: left;
   position: relative;
-  transition: transform 0.2s;
+  border: none;
+  box-shadow: none;
+  transition: none;
 }
-.team-card:hover { transform: translateY(-4px); }
+.team-card:hover { transform: none; }
 
 .team-badge {
-  position: absolute;
-  top: 16px; left: 50%;
-  transform: translateX(-50%);
+  display: inline-block;
+  position: static;
+  transform: none;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(184,149,106,0.14);
-  padding: 4px 10px;
+  background: none;
+  padding: 0;
+  margin-bottom: 8px;
   white-space: nowrap;
 }
 
 .team-avatar {
-  width: 180px;        /* was 88px */
-  height: 220px;       /* was 88px — rectangular portrait shape */
-  border-radius: 4px;  /* was 50% circle — now a soft rectangle */
+  width: 100%;
+  aspect-ratio: 3 / 4;   /* tall portrait ratio, same as reference */
+  border-radius: 0;
   background: var(--warm);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 18px;
+  margin: 0 0 14px 0;
 }
 .team-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;  /* keeps faces visible, not cropped at top */
+  object-position: center top;
+  display: block;
 }
 .team-avatar::before {
   content: attr(data-initials);
   font-family: var(--serif);
-  font-size: 48px;     /* was 26px — bigger initials to match bigger box */
+  font-size: 64px;
   font-weight: 300;
-  letter-spacing: 0.05em;
   color: var(--accent);
 }
 
 .team-name {
-  font-family: var(--serif);
-  font-size: 20px;
+  font-family: var(--sans);
+  font-size: 15px;
   font-weight: 400;
   color: var(--charcoal);
   margin-bottom: 4px;
 }
 .team-role {
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mist);
-}
-.values-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--warm);
-}
-.value-item {
-  padding: 52px 48px;
-  border-right: 1px solid var(--warm);
-}
-.value-item:last-child { border-right: none; }
-.value-num {
-  font-family: var(--serif);
-  font-size: 52px;
   font-weight: 300;
-  color: var(--warm);
-  display: block;
-  margin-bottom: -12px;
-}
-.value-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  color: var(--charcoal);
-  margin-bottom: 10px;
-}
-.value-desc { font-size: 14px; color: var(--mist); line-height: 1.75; }
-
-.press-section {
-  padding: 52px var(--gap-lg);
-  border-top: 1px solid var(--warm);
-  text-align: center;
-}
-.press-section .press-label {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--mist);
-  margin-bottom: 32px;
-}
-.press-section .press-logos {
-  display: flex;
-  justify-content: center;
-  gap: 52px;
-  flex-wrap: wrap;
-  opacity: 0.4;
-}
-.press-section .press-logos span {
-  font-family: var(--serif);
-  font-size: 20px;
-  color: var(--charcoal);
 }
 
 /* ── CONTACT PAGE ────────────────────────────────────────────── */
@@ -475,8 +433,11 @@
   .value-item { border-right: none; border-bottom: 1px solid var(--warm); }
 
   .team-section { padding: var(--gap-lg) 24px 0; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); margin: var(--gap-md) 24px var(--gap-lg); }
-  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: var(--gap-md) 24px var(--gap-lg);
+    gap: 20px;
+  }
   .contact-layout { grid-template-columns: 1fr; padding: var(--gap-lg) 24px; gap: 48px; }
   .form-row { grid-template-columns: 1fr; }
 
