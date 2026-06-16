@@ -48,38 +48,22 @@
       white-space: nowrap;
     }
 
-    /* ── AVATAR: circle that holds either a photo or initials ── */
     .team-avatar {
-      width: 110px;
-      height: 110px;
+      width: 88px; height: 88px;
       border-radius: 50%;
-      overflow: hidden;
       background: var(--warm);
-      border: 2px solid var(--dust);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 18px;
     }
-
-    /* Real photo fills the circle perfectly */
-    .team-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      border-radius: 50%;
-    }
-
-    /* Initials fallback — shown when src points to placeholder */
-    .team-avatar .initials {
+    .team-avatar::before {
+      content: attr(data-initials);
       font-family: var(--serif);
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 300;
-      color: var(--accent);
       letter-spacing: 0.05em;
-      user-select: none;
+      color: var(--accent);
     }
 
     .team-name {
@@ -96,23 +80,11 @@
       color: var(--mist);
     }
 
-    /* Founder large photo block */
-    .founder-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-
     @media (max-width: 960px) {
       .team-section { padding: var(--gap-lg) 24px 0; }
       .team-grid { grid-template-columns: repeat(2, 1fr); margin: var(--gap-md) 24px var(--gap-lg); }
     }
     @media (max-width: 600px) {
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 420px) {
       .team-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -132,60 +104,58 @@
     <a class="nav-cta" href="contact.html">Book a Date</a>
   </nav>
 
+  <!-- ============================================================
+    PAGE HEADER — CUSTOMIZE: heading and subtitle
+  ============================================================ -->
   <div class="page-banner">
     <h1>The <em>people</em> behind the lens</h1>
     <p>Documentary in spirit, film-hearted in soul.</p>
   </div>
 
   <!-- ============================================================
-    FOUNDER PHOTO — large left panel
-    HOW TO REPLACE:
-      Change the src below to your photo filename.
-      Save your photo as:  images/team/afnan.jpg
-      Example: src="../images/team/afnan.jpg"
+    ABOUT SPLIT LAYOUT
+    CUSTOMIZE: Replace SVG placeholder with your real photo:
+      <img src="../images/photographer.jpg" alt="Your Name" />
   ============================================================ -->
   <div class="about-layout">
     <div class="about-image-block">
-
-      <img
-        class="founder-photo"
-        src="../images/team/afnan.jpg"
-        alt="Afnan Rahman Arnab — Founder, Retro Canvas"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-      />
-
-      <!-- Fallback shown if photo file is missing -->
-      <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; gap:12px; background:var(--warm);">
-        <span style="font-family:var(--serif); font-size:64px; font-weight:300; color:var(--accent);">AR</span>
-        <span style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--mist);">Add photo: images/team/afnan.jpg</span>
-      </div>
-
+      <!--
+        REPLACE THIS SVG with your photo:
+        <img src="../images/photographer.jpg" alt="Afnan Rahman Arnab" />
+      -->
+      <svg viewBox="0 0 500 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <rect width="500" height="620" fill="#E8E0D2"/>
+        <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+        <rect width="500" height="620" filter="url(#grain)" opacity="0.12"/>
+        <rect x="155" y="240" width="190" height="140" rx="12" fill="#C9B99A" opacity="0.55"/>
+        <rect x="195" y="220" width="80" height="28" rx="6" fill="#C9B99A" opacity="0.45"/>
+        <circle cx="250" cy="310" r="50" fill="#EDE8DF" opacity="0.6"/>
+        <circle cx="250" cy="310" r="36" fill="#C9B99A" opacity="0.45"/>
+        <circle cx="250" cy="310" r="20" fill="#8A847C" opacity="0.5"/>
+        <circle cx="250" cy="310" r="8" fill="#2A2826" opacity="0.6"/>
+        <rect x="200" y="380" width="100" height="180" rx="5" fill="#C9B99A" opacity="0.35"/>
+        <circle cx="250" cy="210" r="60" fill="#C9B99A" opacity="0.4"/>
+        <radialGradient id="lgt" cx="50%" cy="30%"><stop offset="0%" stop-color="white" stop-opacity="0.4"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient>
+        <rect width="500" height="620" fill="url(#lgt)"/>
+      </svg>
     </div>
 
     <div class="about-text-block">
-      <p class="section-eyebrow">Hello, I'm Afnan</p>
+      <!-- CUSTOMIZE: Photographer intro and bio -->
+      <p class="section-eyebrow">Hello, I'm Afnan</p><!-- CUSTOMIZE: Your name -->
       <h2 class="section-heading">Building Retro Canvas,<br><em>frame by frame</em></h2>
+      <!-- CUSTOMIZE: Your story paragraphs -->
       <p>Retro Canvas started in 2022 with one camera, one couple, and a simple belief — that South Asian weddings deserve to be documented exactly as they feel: loud, colourful, layered with ritual, and full of people who love you.</p>
       <p>Since then we've grown into a small, dedicated team based in Dhaka, working across Bangladesh and beyond. Photographers, cinematographers, editors — every person on this team is here because they care about getting it right, not just getting it done.</p>
       <p>When I'm not on set, I'm probably planning the next wedding, backing up hard drives late at night, or arguing with the team about which take made the final cut.</p>
+      <!-- CUSTOMIZE: Your signature -->
       <div class="about-signature">Afnan Rahman Arnab</div>
       <a class="btn-primary" href="contact.html">Work with us</a>
     </div>
   </div>
 
   <!-- ============================================================
-    TEAM GRID
-    HOW TO ADD EACH PERSON'S PHOTO:
-      1. Save their photo into the folder:  images/team/
-      2. Find their card below
-      3. Change the src="..." on their <img> tag to their filename
-         Example:  src="../images/team/sanjida.jpg"
-      4. The initials will automatically hide when a real photo loads
-
-    PHOTO TIPS:
-      - Square or portrait crops work best (face visible)
-      - Minimum 300×300px recommended
-      - JPG or PNG both work fine
+    MEET THE TEAM — CUSTOMIZE: names, roles, initials
   ============================================================ -->
   <div class="team-section">
     <p class="section-eyebrow">The people behind every frame</p>
@@ -194,117 +164,48 @@
   </div>
 
   <div class="team-grid">
-
-    <!-- ── 1. Afnan Rahman Arnab ──
-         REPLACE src with: ../images/team/afnan.jpg -->
     <div class="team-card">
       <span class="team-badge">Founder</span>
-      <div class="team-avatar">
-        <img
-          src="afnan.jpg"
-          alt="Afnan Rahman Arnab"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">AR</span>
-      </div>
+      <div class="team-avatar" data-initials="AR"></div>
       <p class="team-name">Afnan Rahman Arnab</p>
       <p class="team-role">Founder &amp; Lead Photographer</p>
     </div>
-
-    <!-- ── 2. Sanjida Rahman ──
-         REPLACE src with: ../images/team/sanjida.jpg -->
     <div class="team-card">
       <span class="team-badge">Co-Founder</span>
-      <div class="team-avatar">
-        <img
-          src="maria.jpg"
-          alt="Sanjida Rahman"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">SR</span>
-      </div>
+      <div class="team-avatar" data-initials="SR"></div>
       <p class="team-name">Sanjida Rahman</p>
       <p class="team-role">Co-Founder &amp; Manager</p>
     </div>
-
-    <!-- ── 3. Authy ──
-         REPLACE src with: ../images/team/authy.jpg -->
     <div class="team-card">
-      <div class="team-avatar">
-        <img
-          src="authy.jpg"
-          alt="Authy"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">AU</span>
-      </div>
+      <div class="team-avatar" data-initials="AU"></div>
       <p class="team-name">Authy</p>
       <p class="team-role">Customer Relationship Officer</p>
     </div>
-
-    <!-- ── 4. Zihad Prodhan ──
-         REPLACE src with: ../images/team/zihad.jpg -->
     <div class="team-card">
-      <div class="team-avatar">
-        <img
-          src="zihad.jpg"
-          alt="Zihad Prodhan"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">ZP</span>
-      </div>
+      <div class="team-avatar" data-initials="ZP"></div>
       <p class="team-name">Zihad Prodhan</p>
       <p class="team-role">Lead Photographer</p>
     </div>
-
-    <!-- ── 5. Syful Islam ──
-         REPLACE src with: ../images/team/syful.jpg -->
     <div class="team-card">
-      <div class="team-avatar">
-        <img
-          src="syful.jpg"
-          alt="Syful Islam"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">SI</span>
-      </div>
+      <div class="team-avatar" data-initials="SI"></div>
       <p class="team-name">Syful Islam</p>
       <p class="team-role">Lead Cinematographer</p>
     </div>
-
-    <!-- ── 6. Nazmuz Shakib ──
-         REPLACE src with: ../images/team/nazmuz.jpg -->
     <div class="team-card">
-      <div class="team-avatar">
-        <img
-          src="nazmuz.jpg"
-          alt="Nazmuz Shakib"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">NS</span>
-      </div>
+      <div class="team-avatar" data-initials="NS"></div>
       <p class="team-name">Nazmuz Shakib</p>
       <p class="team-role">Senior Photo Editor</p>
     </div>
-
-    <!-- ── 7. Ryhan ──
-         REPLACE src with: ../images/team/ryhan.jpg -->
     <div class="team-card">
-      <div class="team-avatar">
-        <img
-          src="ryhan.jpg"
-          alt="Ryhan"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="initials" style="display:none;">RY</span>
-      </div>
+      <div class="team-avatar" data-initials="RY"></div>
       <p class="team-name">Ryhan</p>
       <p class="team-role">Senior Cinema Editor</p>
     </div>
-
   </div>
 
-  <!-- VALUES -->
+  <!-- ============================================================
+    VALUES — CUSTOMIZE: titles and descriptions
+  ============================================================ -->
   <div class="values-strip">
     <div class="value-item">
       <span class="value-num">I</span>
@@ -322,6 +223,19 @@
       <p class="value-desc">We meet every couple before we photograph them. Comfort in front of our lens is not optional — it's the work.</p>
     </div>
   </div>
+
+  <!-- ============================================================
+    PRESS — CUSTOMIZE: Replace with your real press mentions
+  ============================================================ 
+  <div class="press-section">
+    <p class="press-label">Featured In</p>
+    <div class="press-logos">
+      <span>Vogue Weddings</span>
+      <span>Junebug Weddings</span>
+      <span>Rock My Wedding</span>
+      <span>Green Wedding Shoes</span>
+    </div>
+  </div>-->
 
   <!-- FOOTER -->
   <footer id="site-footer">
