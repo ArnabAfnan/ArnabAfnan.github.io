@@ -35,7 +35,7 @@
    The ID is the 11 characters after  v=
    ================================================================ */
 
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
 
   /* ══════════════════════════════════════════════════════════════
      1.  DATA — EDIT THIS SECTION
@@ -58,11 +58,21 @@
         '../source/Portfolio/Portrait/addrita-sefat/08.jpg',
         '../source/Portfolio/Portrait/addrita-sefat/09.jpg',
         '../source/Portfolio/Portrait/addrita-sefat/10.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/11.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/12.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/13.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/14.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/15.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/16.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/17.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/18.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/19.jpg',
+        '../source/Portfolio/Portrait/addrita-sefat/20.jpg',
       ]
     },
     {
       couple:   'Borno & Trina',
-      location: 'Chittagong, Bangladesh',
+      location: 'Dhaka, Bangladesh',
       cover:    '../source/Portfolio/Portrait/borno-trina/cover.jpg',
       photos: [
         '../source/Portfolio/Portrait/borno-trina/01.jpg',
@@ -77,6 +87,14 @@
         '../source/Portfolio/Portrait/borno-trina/10.jpg',
         '../source/Portfolio/Portrait/borno-trina/11.jpg',
         '../source/Portfolio/Portrait/borno-trina/12.jpg',
+        '../source/Portfolio/Portrait/borno-trina/13.jpg',
+        '../source/Portfolio/Portrait/borno-trina/14.jpg',
+        '../source/Portfolio/Portrait/borno-trina/15.jpg',
+        '../source/Portfolio/Portrait/borno-trina/16.jpg',
+        '../source/Portfolio/Portrait/borno-trina/17.jpg',
+        '../source/Portfolio/Portrait/borno-trina/18.jpg',
+        '../source/Portfolio/Portrait/borno-trina/19.jpg',
+        '../source/Portfolio/Portrait/borno-trina/20.jpg',
       ]
     },
     {
@@ -97,21 +115,30 @@
       ]
     },
     {
-      couple:   'Farhan & Riya',
+      couple:   'Rubaiya & Rizon',
       location: 'Dhaka, Bangladesh',
-      cover:    '../source/Portfolio/Portrait/farhan-riya/cover.jpg',
+      cover:    '../source/Portfolio/Portrait/rubaiya-rizon/cover.jpg',
       photos: [
-        '../source/Portfolio/Portrait/farhan-riya/01.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/02.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/03.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/04.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/05.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/06.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/07.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/08.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/09.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/10.jpg',
-        '../source/Portfolio/Portrait/farhan-riya/11.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/01.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/02.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/03.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/04.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/05.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/06.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/07.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/08.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/09.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/10.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/11.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/12.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/13.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/14.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/15.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/16.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/17.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/18.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/19.jpg',
+        '../source/Portfolio/Portrait/rubaiya-rizon/20.jpg',
       ]
     },
     {
@@ -173,33 +200,30 @@
   // Replace youtubeId with the real 11-char ID from your YouTube URLs
   const FILMS = [
     {
-      couple:    'Rahim & Nadia',
+      couple:    'Addrita & Sefat',
       location:  'Dhaka, Bangladesh',
-      youtubeId: 'dQw4w9WgXcQ',   // ← replace with your real YouTube ID
-      desc:      'A golden afternoon Holud and Biye across Old Dhaka's rooftops.'
+      youtubeId: 'Bn9YcfOD53s',   // ← replace with your real YouTube ID
     },
     {
-      couple:    'Karim & Sadia',
-      location:  'Chittagong, Bangladesh',
-      youtubeId: 'dQw4w9WgXcQ',   // ← replace
-      desc:      'Sunset ceremony at Patenga Beach — salt air, garlands, and tears.'
+      couple:    'Borno & Trina',
+      location:  'Dhaka, Bangladesh',
+      youtubeId: 'Bn9YcfOD53s',   // ← replace
     },
     {
-      couple:    'Hasan & Mitu',
-      location:  'Sylhet, Bangladesh',
-      youtubeId: 'dQw4w9WgXcQ',   // ← replace
-      desc:      'Tea-garden vows in the green hills of Srimangal.'
+      couple:    'Tahiya & Abtahi',
+      location:  'Dhaka, Bangladesh',
+      youtubeId: 'Bn9YcfOD53s',   // ← replace
     },
     {
       couple:    'Farhan & Riya',
       location:  'Dhaka, Bangladesh',
-      youtubeId: 'dQw4w9WgXcQ',   // ← replace
+      youtubeId: 'Bn9YcfOD53s',   // ← replace
       desc:      'An intimate Akd and reception in Gulshan — quiet and luminous.'
     },
     {
       couple:    'Sabbir & Tania',
       location:  'Rangpur, Bangladesh',
-      youtubeId: 'dQw4w9WgXcQ',   // ← replace
+      youtubeId: 'Bn9YcfOD53s',   // ← replace
       desc:      'Village wedding at dusk — fire, music, and the whole community.'
     },
   ];
@@ -221,6 +245,11 @@
     { img: '../source/Portfolio/Ceremony/ceremony-13.jpg', caption: 'Emotional vows · Sylhet',             aspect: 'portrait'  },
     { img: '../source/Portfolio/Ceremony/ceremony-14.jpg', caption: 'Fire ritual · Jessore',               aspect: 'square'    },
     { img: '../source/Portfolio/Ceremony/ceremony-15.jpg', caption: 'Night reception · Dhaka',             aspect: 'landscape' },
+    { img: '../source/Portfolio/Ceremony/ceremony-16.jpg', caption: 'Family blessings · Sylhet',           aspect: 'portrait'  },
+    { img: '../source/Portfolio/Ceremony/ceremony-17.jpg', caption: 'Couple portrait · Chittagong',        aspect: 'portrait'  },
+    { img: '../source/Portfolio/Ceremony/ceremony-18.jpg', caption: 'Mehendi dance · Dhaka',              aspect: 'landscape' },
+    { img: '../source/Portfolio/Ceremony/ceremony-19.jpg', caption: 'Candid laughter · Rangpur',           aspect: 'square'    },
+    { img: '../source/Portfolio/Ceremony/ceremony-20.jpg', caption: 'Bou Bhat send-off · Jessore',        aspect: 'landscape' },
   ];
 
 
@@ -513,4 +542,4 @@
     }
   });
 
-})();
+});
