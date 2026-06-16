@@ -272,7 +272,7 @@
 .home-about {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 600px;
+  min-height: 300px;
 }
 
 .home-about-image {
