@@ -4,17 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Retro Canvas — Wedding Photography</title>
-  <!-- ============================================================
-    CUSTOMIZE: Change the title above to your business name
-  ============================================================ -->
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/home.css" />
 </head>
 <body>
 
-  <!-- ============================================================
-    NAV — Edit links/logo in global.css & nav.brand below
-  ============================================================ -->
   <nav id="main-nav">
     <a class="nav-logo" href="index.html">Retro <span>Canvas</span></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">&#9776;</button>
@@ -28,12 +22,7 @@
     <a class="nav-cta" href="pages/contact.html">Book a Date</a>
   </nav>
 
-  <!-- ============================================================
-    HERO SLIDESHOW
-    To swap images: replace the background-image URLs in home.css
-    under .slide-1, .slide-2 etc. — or drop your JPGs into /images/
-    and point to them like: url('../images/hero1.jpg')
-  ============================================================ -->
+  <!-- ── HERO SLIDESHOW ── -->
   <section class="hero-slider">
     <div class="slides-track">
       <div class="slide slide-1">
@@ -53,7 +42,7 @@
         <div class="slide-content">
           <span class="slide-eyebrow">Film · Documentary · Intimate</span>
           <h1 class="slide-headline">Every glance.<br><em>Every tear.</em><br>Preserved.</h1>
-          <p class="slide-sub">Twelve years shooting weddings across Europe and the Americas — always with a film heart.</p>
+          <p class="slide-sub">Since 2022, shooting weddings across Bangladesh and beyond — always with a film heart.</p>
           <div class="slide-actions">
             <a class="btn-primary" href="pages/about.html">Our Story</a>
             <a class="btn-ghost" href="pages/pricing.html">See Packages</a>
@@ -65,7 +54,7 @@
         <div class="slide-content">
           <span class="slide-eyebrow">Destination Weddings Welcome</span>
           <h1 class="slide-headline">We go where<br><em>your love</em> takes us.</h1>
-          <p class="slide-sub">From Tuscany to Tokyo — we travel worldwide to document your most important day.</p>
+          <p class="slide-sub">From Dhaka to anywhere — we travel nationwide and beyond to document your most important day.</p>
           <div class="slide-actions">
             <a class="btn-primary" href="pages/contact.html">Start a Conversation</a>
             <a class="btn-ghost" href="pages/portfolio.html">Browse Gallery</a>
@@ -85,20 +74,14 @@
         </div>
       </div>
     </div>
-
-    <!-- Slider Controls -->
     <div class="slider-dots" id="slider-dots"></div>
     <button class="slider-arrow slider-prev" id="slider-prev" aria-label="Previous">&#8592;</button>
     <button class="slider-arrow slider-next" id="slider-next" aria-label="Next">&#8594;</button>
-
-    <!-- Film strip detail -->
     <div class="film-strip-corner">
       <div class="film-hole"></div><div class="film-hole"></div>
       <div class="film-hole"></div><div class="film-hole"></div>
       <div class="film-hole"></div><div class="film-hole"></div>
     </div>
-
-    <!-- Slide counter -->
     <div class="slide-counter">
       <span id="slide-current">01</span>
       <span class="slide-sep">—</span>
@@ -106,10 +89,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-    STATS BAR
-    CUSTOMIZE: Change numbers and labels below
-  ============================================================ -->
+  <!-- ── STATS BAR ── -->
   <div class="stats-bar">
     <div class="stat-item">
       <span class="stat-num">240+</span>
@@ -119,45 +99,39 @@
       <span class="stat-num">5</span>
       <span class="stat-label">Years of Experience</span>
     </div>
-   <!--<div class="stat-item">
-      <span class="stat-num"></span>
-      <span class="stat-label">Countries Travelled</span>
-    </div>-->
     <div class="stat-item">
       <span class="stat-num">100%</span>
       <span class="stat-label">Film-Inspired Edits</span>
     </div>
   </div>
 
-  <!-- ============================================================
-    ABOUT TEASER
-    CUSTOMIZE: Edit heading, paragraphs and signature below
-  ============================================================ -->
- <div class="home-about-image">
-  <img
-    src="source/Team Photo/afnan.jpg"
-    alt="Afnan Rahman Arnab"
-    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-  />
-  <!-- Fallback if photo is missing -->
-  <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:var(--warm); flex-direction:column; gap:12px;">
-    <span style="font-family:var(--serif); font-size:72px; font-weight:300; color:var(--accent);">AR</span>
-  </div>
-</div>
+  <!-- ── ABOUT TEASER — image + text side by side ── -->
+  <section class="home-about">
+
+    <div class="home-about-image">
+      <img
+        src="source/Team Photo/afnan.jpg"
+        alt="Afnan Rahman Arnab"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <!-- Fallback if photo is missing -->
+      <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; background:var(--warm); flex-direction:column; gap:12px;">
+        <span style="font-family:var(--serif); font-size:72px; font-weight:300; color:var(--accent);">AR</span>
+      </div>
+    </div>
+
     <div class="home-about-text">
       <p class="section-eyebrow">We don't pose. We witness.</p>
       <h2 class="section-heading">Born from a love of<br><em>film &amp; honest moments</em></h2>
-      <!-- CUSTOMIZE: Your bio paragraphs -->
       <p>Retro Canvas was born from a love of film photography and an obsession with the unguarded moments — a laugh mid-sentence, a hand nervously straightened, the last quiet breath before the ceremony begins.</p>
       <p>We shoot in a documentary style, blending in until the story unfolds naturally in front of us.</p>
-      <div class="about-sig">Afnan Rahman Arnab</div><!-- CUSTOMIZE: Your name -->
+      <div class="about-sig">Afnan Rahman Arnab</div>
       <a class="btn-ghost" href="pages/about.html">Read our full story &rarr;</a>
     </div>
+
   </section>
 
-  <!-- ============================================================
-    FEATURED GALLERY STRIP
-  ============================================================ -->
+  <!-- ── FEATURED GALLERY ── -->
   <section class="home-gallery">
     <div class="home-gallery-header">
       <p class="section-eyebrow">Selected Work</p>
@@ -165,95 +139,69 @@
       <a class="btn-ghost" href="pages/portfolio.html">View full gallery &rarr;</a>
     </div>
     <div class="home-gallery-grid">
-      <!-- CUSTOMIZE: Replace SVGs with <img src="images/photo.jpg"> -->
       <div class="hg-item hg-tall">
         <div class="hg-placeholder" style="background:#D6CCC0;"></div>
-        <div class="hg-hover"><span>Golden Hour · Amalfi</span></div>
+        <div class="hg-hover"><span>Golden Hour · Dhaka</span></div>
       </div>
       <div class="hg-item">
         <div class="hg-placeholder" style="background:#DDD6C8;"></div>
-        <div class="hg-hover"><span>Chapel · Cotswolds</span></div>
+        <div class="hg-hover"><span>Ceremony · Chittagong</span></div>
       </div>
       <div class="hg-item">
         <div class="hg-placeholder" style="background:#D4CECC;"></div>
-        <div class="hg-hover"><span>35mm Film · Tuscany</span></div>
+        <div class="hg-hover"><span>35mm Film · Sylhet</span></div>
       </div>
       <div class="hg-item hg-wide">
         <div class="hg-placeholder" style="background:#E2DAD0;"></div>
-        <div class="hg-hover"><span>Bridal Portraits · Santorini</span></div>
+        <div class="hg-hover"><span>Bridal Portraits · Cox's Bazar</span></div>
       </div>
       <div class="hg-item">
         <div class="hg-placeholder" style="background:#D0CAC0;"></div>
-        <div class="hg-hover"><span>Venice · Canals</span></div>
+        <div class="hg-hover"><span>Reception · Dhaka</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-    TESTIMONIAL
-    CUSTOMIZE: Change quote, name and location below
-  ============================================================ -->
+  <!-- ── TESTIMONIAL ── -->
   <section class="home-testimonial">
     <div class="testimonial-inner">
       <div class="quote-mark">"</div>
-      <!-- CUSTOMIZE: Testimonial quote -->
       <blockquote>Looking at our photos feels like remembering a dream — every emotion exactly as it was, but somehow more beautiful.</blockquote>
-      <!-- CUSTOMIZE: Client names and location -->
       <cite>— Adrita &amp; Sefat · Dhaka, 2025</cite>
     </div>
   </section>
 
-  <!-- ============================================================
-    PRICING TEASER
-  ============================================================ -->
+  <!-- ── PRICING TEASER ── -->
   <section class="home-pricing">
-  <p class="section-eyebrow">Simple, honest pricing</p>
-  <h2 class="section-heading">Four collections.<br><em>No surprises.</em></h2>
-  <div class="pricing-teaser-grid">
-    <!-- CUSTOMIZE: Package names, prices, descriptions -->
-    <div class="pt-card">
-      <span class="pt-name">Essential</span>
-      <span class="pt-price">From BDT 16,000</span>
-      <span class="pt-desc">6 hrs coverage · Unlimited photos · Trailer &amp; full video</span>
+    <p class="section-eyebrow">Simple, honest pricing</p>
+    <h2 class="section-heading">Four collections.<br><em>No surprises.</em></h2>
+    <div class="pricing-teaser-grid">
+      <div class="pt-card">
+        <span class="pt-name">Essential</span>
+        <span class="pt-price">From BDT 16,000</span>
+        <span class="pt-desc">6 hrs coverage · Unlimited photos · Trailer &amp; full video</span>
+      </div>
+      <div class="pt-card pt-featured">
+        <span class="pt-badge">Most Popular</span>
+        <span class="pt-name">Signature</span>
+        <span class="pt-price">From BDT 28,000</span>
+        <span class="pt-desc">With Afnan Rahman Arnab · 6 hrs coverage</span>
+      </div>
+      <div class="pt-card">
+        <span class="pt-name">Heirloom</span>
+        <span class="pt-price">From BDT 80,000</span>
+        <span class="pt-desc">Documentary storytelling · Destination weddings</span>
+      </div>
+      <div class="pt-card">
+        <span class="pt-name">Prelude</span>
+        <span class="pt-price">From BDT 12,000</span>
+        <span class="pt-desc">Lean coverage · Inside Dhaka or nationwide</span>
+      </div>
     </div>
-    <div class="pt-card pt-featured">
-      <span class="pt-badge">Most Popular</span>
-      <span class="pt-name">Signature</span>
-      <span class="pt-price">From BDT 28,000</span>
-      <span class="pt-desc">With Afnan Rahman Arnab · 6 hrs coverage</span>
-    </div>
-    <div class="pt-card">
-      <span class="pt-name">Heirloom</span>
-      <span class="pt-price">From BDT 80,000</span>
-      <span class="pt-desc">Documentary storytelling · Destination weddings</span>
-    </div>
-    <div class="pt-card">
-      <span class="pt-name">Prelude</span>
-      <span class="pt-price">From BDT 12,000</span>
-      <span class="pt-desc">Lean coverage · Inside Dhaka or nationwide</span>
-    </div>
-  </div>
-  <a class="btn-primary" href="pages/pricing.html">See full pricing details</a>
-</section>
+    <a class="btn-primary" href="pages/pricing.html">See full pricing details</a>
+  </section>
 
-  <!-- ============================================================
-    PRESS / FEATURED IN
-    CUSTOMIZE: Replace with your actual press mentions
-  ============================================================
-  <section class="home-press">
-    <p class="press-label">Featured In</p>
-    <div class="press-logos">
-      <span>Vogue Weddings</span>
-      <span>Junebug Weddings</span>
-      <span>Rock My Wedding</span>
-      <span>Green Wedding Shoes</span>
-    </div>
-  </section> -->
-
-  <!-- ============================================================
-    FOOTER
-    CUSTOMIZE: Update email, social links, copyright year
-  ============================================================ -->
+  <!-- ── FOOTER ── -->
   <footer id="site-footer">
     <div class="footer-top">
       <div class="footer-brand">
@@ -274,7 +222,7 @@
         <a href="tel:+8801887303536">+880 1887-303536</a>
         <span>Dhaka, Bangladesh · Worldwide</span>
       </div>
-       <div class="footer-social">
+      <div class="footer-social">
         <strong>Follow Along</strong>
         <a href="https://www.instagram.com/retrocanvas.bd" target="_blank">Instagram</a>
         <a href="#" target="_blank">Pinterest</a>
