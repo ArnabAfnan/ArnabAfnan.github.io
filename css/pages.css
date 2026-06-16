@@ -247,7 +247,7 @@
 }
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   background: var(--warm);
   padding: 3px;
@@ -255,8 +255,7 @@
 }
 .team-card {
   background: var(--ivory);
-  padding: 44px 24px 36px;
-  text-align: center;
+  padding: 36px 20px 36px;   
   position: relative;
   transition: transform 0.2s;
 }
@@ -276,18 +275,26 @@
 }
 
 .team-avatar {
-  width: 88px; height: 88px;
-  border-radius: 50%;
+  width: 180px;        /* was 88px */
+  height: 220px;       /* was 88px — rectangular portrait shape */
+  border-radius: 4px;  /* was 50% circle — now a soft rectangle */
   background: var(--warm);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 18px;
 }
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;  /* keeps faces visible, not cropped at top */
+}
 .team-avatar::before {
   content: attr(data-initials);
   font-family: var(--serif);
-  font-size: 26px;
+  font-size: 48px;     /* was 26px — bigger initials to match bigger box */
   font-weight: 300;
   letter-spacing: 0.05em;
   color: var(--accent);
