@@ -242,8 +242,6 @@
 .team-meta {
   font-size: 13px;
   color: var(--mist);
-  letter-spacing: 0.04em;
-  margin-top: -8px;
 }
 .team-grid {
   display: grid;
