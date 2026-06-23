@@ -272,6 +272,35 @@
   text-decoration: none;
   font-weight: 500;
 }
+/* ── SHOOT TYPE NOTICE ───────────────────────────────────────── */
+.pkg-shoot-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--charcoal);
+  color: var(--dust);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  padding: 14px var(--gap-lg);
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.pkg-shoot-notice svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.pkg-shoot-notice strong {
+  color: var(--white);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
 
 /* ── ABOUT PAGE ──────────────────────────────────────────────── */
 .about-layout {
@@ -568,7 +597,12 @@
   .category-tabs { grid-template-columns: repeat(2, 1fr); }
   .cat-tab { padding: 16px 12px; font-size: 13px; }
   .pkg-card { padding: 32px 24px 36px; }
-
+  .pkg-shoot-notice {
+    font-size: 12px;
+    padding: 12px 16px;
+    gap: 8px;
+  }
   /* Team */
   .team-grid { grid-template-columns: 1fr; }
+  
 }
