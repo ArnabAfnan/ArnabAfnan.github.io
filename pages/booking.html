@@ -30,6 +30,57 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      position: fixed; inset: 0;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; padding: 24px;
+    }
+    #login-screen.hidden { display: none; }
+    .login-box {
+      background: var(--ivory); padding: 52px 48px 44px;
+      width: 100%; max-width: 400px; text-align: center;
+    }
+    .login-logo { font-family: var(--serif); font-size: 30px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
+    .login-logo em { color: var(--accent); font-style: italic; }
+    .login-badge {
+      display: inline-block; font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent);
+      background: rgba(184,149,106,0.12); padding: 4px 12px; margin-bottom: 36px;
+    }
+    .login-lbl { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); display: block; text-align: left; margin-bottom: 7px; }
+    .login-field {
+      font-family: var(--sans); font-size: 16px; font-weight: 300;
+      color: var(--charcoal); background: var(--white);
+      border: 1px solid var(--warm); padding: 13px 16px; outline: none;
+      width: 100%; margin-bottom: 18px; letter-spacing: 0.18em;
+      transition: border-color 0.2s; border-radius: 0; text-align: center;
+    }
+    .login-field:focus { border-color: var(--accent); }
+    .login-field.shake { animation: shake 0.35s ease; border-color: #c0392b; }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)}
+      40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)}
+    }
+    .login-btn {
+      font-family: var(--sans); font-size: 12px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--white); background: var(--charcoal);
+      border: none; padding: 14px; width: 100%; cursor: pointer; transition: background 0.2s;
+    }
+    .login-btn:hover { background: var(--accent); }
+    .login-err { font-size: 12px; color: #c0392b; display: none; margin-bottom: 10px; }
+    .login-hint { font-size: 11px; color: var(--mist); margin-top: 20px; line-height: 1.7; }
+    .login-hint code { background: var(--warm); padding: 1px 6px; font-size: 11px; color: var(--charcoal); }
+    /* admin badge on topbar */
+    .admin-badge {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--charcoal); background: var(--accent);
+      padding: 5px 12px; cursor: pointer; transition: background 0.2s;
+      border: none; font-family: var(--sans);
+    }
+    .admin-badge:hover { background: var(--dust); }
+
     /* ── TOP BAR ── */
     .topbar {
       background: var(--charcoal);
@@ -330,10 +381,30 @@
 </head>
 <body>
 
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Retro <em>Canvas</em></div>
+    <div class="login-badge">Admin Panel</div>
+    <label class="login-lbl">Username</label>
+    <input class="login-field" type="text" id="login-user" placeholder="admin" autocomplete="username" />
+    <label class="login-lbl">Password</label>
+    <input class="login-field" type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password"
+           onkeydown="if(event.key==='Enter') doLogin()" />
+    <div class="login-err" id="login-err">Incorrect username or password</div>
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-hint">
+      To change credentials, open this file in VS Code<br>
+      and edit <code>ADMIN_USER</code> and <code>ADMIN_PASS</code>
+    </div>
+  </div>
+</div>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-logo">Retro <em>Canvas</em></div>
-  <div class="topbar-sub">Booking &amp; Invoice System</div>
+  <div class="topbar-sub">Admin Panel &nbsp;·&nbsp; Booking &amp; Invoice</div>
+  <button class="admin-badge" onclick="doLogout()">&#x2715; Log out</button>
 </div>
 
 <div class="wrap">
@@ -513,6 +584,53 @@
    6. Paste the URL below replacing YOUR_APPS_SCRIPT_URL
 ================================================================ */
 const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL'; // ← paste here
+
+/* ================================================================
+   ADMIN LOGIN — CHANGE YOUR CREDENTIALS HERE
+   ================================================================
+   ADMIN_USER : your username
+   ADMIN_PASS : your password
+   SESSION_KEY: the name stored in browser (no need to change)
+
+   After editing, save the file. Credentials are stored only in
+   this file — never sent anywhere unless you connect Google Sheets.
+================================================================ */
+const ADMIN_USER    = 'admin';          // ← change your username
+const ADMIN_PASS    = 'retro@2024';     // ← change your password
+const SESSION_KEY   = 'rc_admin_auth';
+
+function checkLogin() {
+  if (sessionStorage.getItem(SESSION_KEY) === 'true') {
+    document.getElementById('login-screen').classList.add('hidden');
+  }
+}
+
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  const passField = document.getElementById('login-pass');
+  const err = document.getElementById('login-err');
+
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    sessionStorage.setItem(SESSION_KEY, 'true');
+    document.getElementById('login-screen').classList.add('hidden');
+    err.style.display = 'none';
+  } else {
+    err.style.display = 'block';
+    passField.value = '';
+    passField.classList.add('shake');
+    setTimeout(() => passField.classList.remove('shake'), 400);
+    passField.focus();
+  }
+}
+
+function doLogout() {
+  if (!confirm('Log out of admin panel?')) return;
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+checkLogin();
 
 /* ── PACKAGE DATA ── */
 const PKGS = [
