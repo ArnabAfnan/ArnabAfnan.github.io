@@ -42,7 +42,17 @@
       background: var(--ivory); padding: 52px 48px 44px;
       width: 100%; max-width: 400px; text-align: center;
     }
-    .login-logo { font-family: var(--serif); font-size: 30px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
+    .login-logo {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .login-logo:hover { color: var(--accent); }
     .login-logo em { color: var(--accent); font-style: italic; }
     .login-badge {
       display: inline-block; font-size: 10px; letter-spacing: 0.22em;
@@ -385,8 +395,7 @@
 <!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-logo">Retro <em>Canvas</em></div>
-    <div class="login-badge">Admin Panel</div>
+    <a class="login-logo" href="../index.html">Retro <em>Canvas</em></a>
     <label class="login-lbl">Username</label>
     <input class="login-field" type="text" id="login-user" placeholder="admin" autocomplete="username" />
     <label class="login-lbl">Password</label>
@@ -394,10 +403,6 @@
            onkeydown="if(event.key==='Enter') doLogin()" />
     <div class="login-err" id="login-err">Incorrect username or password</div>
     <button class="login-btn" onclick="doLogin()">Sign In</button>
-    <div class="login-hint">
-      To change credentials, open this file in VS Code<br>
-      and edit <code>ADMIN_USER</code> and <code>ADMIN_PASS</code>
-    </div>
   </div>
 </div>
 
@@ -592,7 +597,7 @@
 
    6. Paste the URL below replacing YOUR_APPS_SCRIPT_URL
 ================================================================ */
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz5_hLBAvNLXcRThAAPAryHmB2TL4b94vhGllaNSHjc6q882reECgAZWHS9Te9MH5Ztsg/exec'; // ← paste here
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwIU32Pk3ppiPsdVgjiUYLhAgZCLNKZfTpnRGlSoVqtnTEl39hhCdpikYuwgc_3HTxB/exec'; // ← paste here
 
 /* ================================================================
    ADMIN LOGIN — CHANGE YOUR CREDENTIALS HERE
@@ -643,8 +648,6 @@ checkLogin();
 
 /* ── PACKAGE DATA ── */
 const PKGS = [
-  { cat:'Prelude',   name:'Classic',                     price:12000  },
-  { cat:'Prelude',   name:'Prestige',                    price:25000  },
   { cat:'Essential', name:'Bloom',                       price:16000  },
   { cat:'Essential', name:'Grace',                       price:24000  },
   { cat:'Essential', name:'Eternity',                    price:32000  },
@@ -654,6 +657,8 @@ const PKGS = [
   { cat:'Signature', name:'Premium',                     price:60000  },
   { cat:'Heirloom',  name:'Documentary & Story Telling', price:80000  },
   { cat:'Heirloom',  name:'Destination Wedding',         price:120000 },
+  { cat:'Prelude',   name:'Classic',                     price:12000  },
+  { cat:'Prelude',   name:'Prestige',                    price:25000  },
   { cat:'Custom',    name:'Custom / Combo',              price:0      },
 ];
 
