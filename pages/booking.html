@@ -304,6 +304,7 @@
     .inv-totals { margin-left: auto; width: 280px; }
     .inv-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 13px; color: var(--mist); }
     .inv-row.pkg-row { font-family: var(--serif); font-size: 18px; color: var(--charcoal); border-top: 2px solid var(--charcoal); margin-top: 8px; padding-top: 12px; }
+    .inv-row.disc { color: #c0392b; }
     .inv-row.adv { color: var(--accent); }
     .inv-row.bal { color: var(--charcoal); font-weight: 500; border-top: 1px solid var(--warm); margin-top: 4px; padding-top: 10px; font-size: 15px; }
 
@@ -510,7 +511,15 @@
         </div>
         <div class="fg">
           <label class="fl">Total package price (BDT) <span class="req">*</span></label>
-          <input type="number" id="pkg-price" placeholder="e.g. 24000" oninput="calcBal()" />
+          <input type="number" id="pkg-price" placeholder="e.g. 24000" oninput="calcBal('price')" />
+        </div>
+        <div class="fg">
+          <label class="fl">Discount (%)</label>
+          <input type="number" id="disc-percent" placeholder="e.g. 10" oninput="calcBal('percent')" />
+        </div>
+        <div class="fg">
+          <label class="fl">Discount amount (BDT)</label>
+          <input type="number" id="disc-amount" placeholder="e.g. 2000" oninput="calcBal('amount')" />
         </div>
         <div class="fg">
           <label class="fl">Advance paid (BDT) <span class="req">*</span></label>
@@ -561,10 +570,10 @@
    ────────────────────────────────────────────────────────────────
    1. Go to sheets.google.com → create a new spreadsheet
    2. Name the first sheet:  Bookings
-   3. Add these headers in row 1 (A1 to M1):
+   3. Add these headers in row 1 (A1 to O1):
       Invoice No | Date | Booking Person | Phone | Email |
       Bride | Groom | Events | Package | Total BDT |
-      Advance BDT | Balance BDT | Notes
+      Discount % | Discount BDT | Advance BDT | Balance BDT | Notes
 
    4. In the spreadsheet: Extensions → Apps Script
       Paste this code and save:
@@ -583,7 +592,7 @@
 
    6. Paste the URL below replacing YOUR_APPS_SCRIPT_URL
 ================================================================ */
-const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL'; // ← paste here
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxcUze4wueSryn8Bjo9j-johI83g49Y5Zh5C8JKjIeuDUB0F5gp_Q2skyCwXq6SUE7bMg/exec'; // ← paste here
 
 /* ================================================================
    ADMIN LOGIN — CHANGE YOUR CREDENTIALS HERE
@@ -694,14 +703,26 @@ function validate(step) {
   if (step === 3) {
     const price   = document.getElementById('pkg-price');
     const advance = document.getElementById('advance');
+    const discAmt = document.getElementById('disc-amount');
     let ok = true;
     [price, advance].forEach(f => {
       f.classList.remove('err');
       if (!f.value || isNaN(f.value) || parseFloat(f.value) < 0) { f.classList.add('err'); ok = false; }
     });
     if (!ok) { alert('Please enter valid price and advance amounts.'); return false; }
-    if (parseFloat(advance.value) > parseFloat(price.value)) {
-      alert('Advance cannot exceed the total price.'); return false;
+
+    const priceVal = parseFloat(price.value) || 0;
+    const discVal  = parseFloat(discAmt.value) || 0;
+    if (discVal > priceVal) {
+      discAmt.classList.add('err');
+      alert('Discount cannot exceed the total package price.');
+      return false;
+    }
+    discAmt.classList.remove('err');
+
+    const netPrice = priceVal - discVal;
+    if (parseFloat(advance.value) > netPrice) {
+      alert('Advance cannot exceed the total price after discount.'); return false;
     }
     return true;
   }
@@ -768,15 +789,46 @@ function buildPkgs() {
 
 function selectPkg(i) {
   const p = PKGS[i];
-  if (p.price) { document.getElementById('pkg-price').value = p.price; calcBal(); }
+  if (p.price) { document.getElementById('pkg-price').value = p.price; calcBal('price'); }
   if (p.name !== 'Custom / Combo') document.getElementById('custom-pkg').value = '';
 }
 
-function calcBal() {
-  const price   = parseFloat(document.getElementById('pkg-price').value)  || 0;
-  const advance = parseFloat(document.getElementById('advance').value)     || 0;
-  const bal     = Math.max(0, price - advance);
-  document.getElementById('balance').value = bal > 0 ? 'BDT ' + bal.toLocaleString() : 'BDT 0';
+/* ── DISCOUNT + BALANCE CALCULATION ──
+   source: 'price'   → package price changed, recompute amount from % (if % set)
+           'percent' → discount % changed, recompute amount
+           'amount'  → discount amount changed, recompute %
+           undefined → advance changed, just recompute balance
+*/
+function calcBal(source) {
+  const priceEl   = document.getElementById('pkg-price');
+  const percentEl = document.getElementById('disc-percent');
+  const amountEl  = document.getElementById('disc-amount');
+  const advanceEl = document.getElementById('advance');
+
+  const price = parseFloat(priceEl.value) || 0;
+  let percent = parseFloat(percentEl.value) || 0;
+  let amount  = parseFloat(amountEl.value) || 0;
+
+  if (source === 'percent') {
+    percent = Math.min(Math.max(percent, 0), 100);
+    amount = price * (percent / 100);
+    amountEl.value = amount ? Math.round(amount * 100) / 100 : '';
+  } else if (source === 'amount') {
+    amount = Math.min(Math.max(amount, 0), price || amount);
+    percent = price > 0 ? (amount / price) * 100 : 0;
+    percentEl.value = percent ? Math.round(percent * 100) / 100 : '';
+  } else if (source === 'price') {
+    // package price changed — keep the % fixed and recompute the amount, if a % is set
+    if (percent) {
+      amount = price * (percent / 100);
+      amountEl.value = amount ? Math.round(amount * 100) / 100 : '';
+    }
+  }
+
+  const advance  = parseFloat(advanceEl.value) || 0;
+  const netPrice = Math.max(0, price - amount);
+  const bal      = Math.max(0, netPrice - advance);
+  document.getElementById('balance').value = 'BDT ' + bal.toLocaleString();
 }
 
 /* ── HELPERS ── */
@@ -810,11 +862,14 @@ function buildInvoice() {
   const customPkg = document.getElementById('custom-pkg').value.trim();
   const pkgName = customPkg || autoPkg || 'Custom Package';
 
-  const price   = parseFloat(document.getElementById('pkg-price').value) || 0;
-  const advance = parseFloat(document.getElementById('advance').value)   || 0;
-  const balance = price - advance;
-  const events  = getEvents();
-  const no      = invNo();
+  const price       = parseFloat(document.getElementById('pkg-price').value)   || 0;
+  const discPercent = parseFloat(document.getElementById('disc-percent').value) || 0;
+  const discAmount  = parseFloat(document.getElementById('disc-amount').value)  || 0;
+  const netPrice    = Math.max(0, price - discAmount);
+  const advance     = parseFloat(document.getElementById('advance').value)     || 0;
+  const balance     = netPrice - advance;
+  const events      = getEvents();
+  const no          = invNo();
 
   savedData = {
     no, today: today(),
@@ -826,7 +881,7 @@ function buildInvoice() {
     groom:    document.getElementById('groom').value.trim(),
     bridePh:  document.getElementById('bride-ph').value.trim(),
     groomPh:  document.getElementById('groom-ph').value.trim(),
-    events, pkgName, price, advance, balance,
+    events, pkgName, price, discPercent, discAmount, netPrice, advance, balance,
     notes: document.getElementById('notes').value.trim(),
   };
 
@@ -879,6 +934,10 @@ function buildInvoice() {
     '<div style="display:flex;justify-content:flex-end;">' +
       '<div class="inv-totals">' +
         '<div class="inv-row pkg-row"><span>' + pkgName + '</span><span>BDT ' + price.toLocaleString() + '</span></div>' +
+        (discAmount > 0 ?
+          '<div class="inv-row disc"><span>Discount (' + (Math.round(discPercent * 100) / 100) + '%)</span><span>&minus; BDT ' + discAmount.toLocaleString() + '</span></div>' +
+          '<div class="inv-row"><span>Net total</span><span>BDT ' + netPrice.toLocaleString() + '</span></div>'
+          : '') +
         '<div class="inv-row adv"><span>Advance paid</span><span>BDT ' + advance.toLocaleString() + '</span></div>' +
         '<div class="inv-row bal"><span>Balance due</span><span>BDT ' + balance.toLocaleString() + '</span></div>' +
       '</div>' +
@@ -934,6 +993,8 @@ async function saveSheet() {
     evSummary,
     savedData.pkgName,
     savedData.price,
+    savedData.discPercent,
+    savedData.discAmount,
     savedData.advance,
     savedData.balance,
     savedData.notes,
