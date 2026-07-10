@@ -10,9 +10,9 @@
 ================================================================ */
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'retrocanvas_db');
-define('DB_USER', 'retrocanvas_user');
-define('DB_PASS', 'YOUR_DB_PASSWORD');  // ← change this
+define('DB_NAME', 'retrocan_retrocanvas_db');
+define('DB_USER', 'retrocan_retrocanvas_user');
+define('DB_PASS', 'Retro@2024');  // ← change this
 
 function getDB() {
     static $pdo = null;
