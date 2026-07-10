@@ -1,17 +1,12 @@
 /* ================================================================
-   contact.js — Contact form → Google Sheets
-   ================================================================
-
-   SETUP:
-   1. Open your Google Spreadsheet
-   2. Go to Extensions → Apps Script
-   3. Make sure your doPost function is deployed as a Web App
-   4. Paste your Web App URL below as SHEETS_URL
-   ================================================================ */
+   contact.js — Contact form → /api/enquiry.php → DB + Email
+   Place in: /js/contact.js
+================================================================ */
 
 (function () {
 
-  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbysmUyONeFTRu6ivbddONRqOLVWarSproDoUmajMMXHrkAhJ-oUbaFQ5NXSpPtjEc0q/exec'; // ← paste your URL here
+  // Points to your PHP file on the same server — no CORS issues
+  const API_URL = '/api/enquiry.php';
 
   const form    = document.getElementById('contact-form');
   const btn     = document.querySelector('.form-submit');
@@ -30,23 +25,21 @@
         field.style.borderColor = '';
       }
     });
+    if (!valid) alert('Please fill in all required fields.');
     return valid;
   }
 
   // ── COLLECT FORM DATA ─────────────────────────────────────────
-  function getRow() {
-    // matches the Enquiries sheet headers:
-    // Date | Name | Partner Name | Email | Wedding Date | Venue | Package Interest | Message
-    return [
-      new Date().toLocaleDateString('en-GB'),
-      val('input[placeholder="Sanjida Rahman"]'),   // your name
-      val('input[placeholder="Afnan Rahman"]'),      // partner name
-      val('input[type="email"]'),
-      val('input[type="date"]'),
-      val('input[placeholder="City or venue name"]'),
-      valSelect('.form-select'),
-      val('.form-textarea'),
-    ];
+  function getPayload() {
+    return {
+      name:        val('input[placeholder="Sanjida Rahman"]'),
+      partner:     val('input[placeholder="Afnan Rahman"]'),
+      email:       val('input[type="email"]'),
+      weddingDate: val('input[type="date"]'),
+      venue:       val('input[placeholder="City or venue name"]'),
+      package:     valSelect('.form-select'),
+      message:     val('.form-textarea'),
+    };
   }
 
   function val(selector) {
@@ -56,7 +49,7 @@
 
   function valSelect(selector) {
     const el = form.querySelector(selector);
-    return el ? el.options[el.selectedIndex].text : '';
+    return el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].text : '';
   }
 
   // ── SUBMIT ────────────────────────────────────────────────────
@@ -66,24 +59,25 @@
       if (!validate()) return;
 
       btn.textContent = 'Sending…';
-      btn.disabled = true;
+      btn.disabled    = true;
 
-      fetch(SHEETS_URL, {
+      fetch(API_URL, {
         method:  'POST',
-        mode:    'no-cors',   // required for Apps Script
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({
-          sheet: 'Enquiries',
-          row:   getRow(),
-        }),
+        body:    JSON.stringify(getPayload()),
       })
-      .then(function () {
-        // no-cors means we can't read the response — assume OK
-        showSuccess();
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.status === 'ok') {
+          showSuccess();
+        } else {
+          throw new Error(data.message || 'Server error');
+        }
       })
-      .catch(function () {
+      .catch(function (err) {
+        console.error('Enquiry error:', err);
         btn.textContent = 'Error — please call us directly';
-        btn.disabled = false;
+        btn.disabled    = false;
       });
     });
   }
