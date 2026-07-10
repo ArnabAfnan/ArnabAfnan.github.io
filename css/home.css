@@ -40,28 +40,46 @@
    Keep background-size: cover; background-position: center;
 ──────────────────────────────────────────────────────────────── */
 .slide-1 {
-    background-image: url('../source/hero1.jpg');
+    background-image: url('../source/hero1.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .slide-2 {
-    background-image: url('../source/hero2.jpg');
+    background-image: url('../source/hero2.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .slide-3 {
-    background-image: url('../source/hero3.jpg');
+    background-image: url('../source/hero3.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .slide-4 {
-    background-image: url('../source/hero4.jpg');
+    background-image: url('../source/hero4.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide-5 {
+    background-image: url('../source/hero5.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide-6 {
+    background-image: url('../source/hero6.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide-7 {
+    background-image: url('../source/hero7.avif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
