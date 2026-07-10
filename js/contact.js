@@ -1,24 +1,17 @@
 /* ================================================================
-   contact.js — Contact form handling
+   contact.js — Contact form → Google Sheets
    ================================================================
 
-   CUSTOMIZE: To send real emails, replace the submitForm function
-   with a fetch() call to your backend or a service like:
-   - Formspree:  https://formspree.io  (free, no backend needed)
-   - Netlify Forms: add netlify attribute to your <form>
-   - EmailJS:    https://www.emailjs.com
-
-   FORMSPREE QUICK SETUP:
-   1. Sign up at formspree.io
-   2. Create a form and copy your endpoint URL
-   3. Replace 'YOUR_FORMSPREE_URL' below with it
-   4. Set USE_FORMSPREE = true
+   SETUP:
+   1. Open your Google Spreadsheet
+   2. Go to Extensions → Apps Script
+   3. Make sure your doPost function is deployed as a Web App
+   4. Paste your Web App URL below as SHEETS_URL
    ================================================================ */
 
 (function () {
 
-  const USE_FORMSPREE   = false;                          // set true to enable
-  const FORMSPREE_URL   = 'https://formspree.io/f/YOUR_ID'; // CUSTOMIZE
+  const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbysmUyONeFTRu6ivbddONRqOLVWarSproDoUmajMMXHrkAhJ-oUbaFQ5NXSpPtjEc0q/exec'; // ← paste your URL here
 
   const form    = document.getElementById('contact-form');
   const btn     = document.querySelector('.form-submit');
@@ -40,47 +33,66 @@
     return valid;
   }
 
+  // ── COLLECT FORM DATA ─────────────────────────────────────────
+  function getRow() {
+    // matches the Enquiries sheet headers:
+    // Date | Name | Partner Name | Email | Wedding Date | Venue | Package Interest | Message
+    return [
+      new Date().toLocaleDateString('en-GB'),
+      val('input[placeholder="Sanjida Rahman"]'),   // your name
+      val('input[placeholder="Afnan Rahman"]'),      // partner name
+      val('input[type="email"]'),
+      val('input[type="date"]'),
+      val('input[placeholder="City or venue name"]'),
+      valSelect('.form-select'),
+      val('.form-textarea'),
+    ];
+  }
+
+  function val(selector) {
+    const el = form.querySelector(selector);
+    return el ? el.value.trim() : '';
+  }
+
+  function valSelect(selector) {
+    const el = form.querySelector(selector);
+    return el ? el.options[el.selectedIndex].text : '';
+  }
+
   // ── SUBMIT ────────────────────────────────────────────────────
   if (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       if (!validate()) return;
 
-      if (USE_FORMSPREE) {
-        // Real submission via Formspree
-        const data = new FormData(form);
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
 
-        fetch(FORMSPREE_URL, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        })
-        .then(function (res) {
-          if (res.ok) {
-            showSuccess();
-          } else {
-            btn.textContent = 'Error — try again';
-            btn.disabled = false;
-          }
-        })
-        .catch(function () {
-          btn.textContent = 'Error — try again';
-          btn.disabled = false;
-        });
-
-      } else {
-        // Demo mode — just show success message
+      fetch(SHEETS_URL, {
+        method:  'POST',
+        mode:    'no-cors',   // required for Apps Script
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          sheet: 'Enquiries',
+          row:   getRow(),
+        }),
+      })
+      .then(function () {
+        // no-cors means we can't read the response — assume OK
         showSuccess();
-      }
+      })
+      .catch(function () {
+        btn.textContent = 'Error — please call us directly';
+        btn.disabled = false;
+      });
     });
   }
 
+  // ── SUCCESS ───────────────────────────────────────────────────
   function showSuccess() {
     if (success) { success.style.display = 'block'; }
     if (btn)     { btn.style.display = 'none'; }
-    // Optionally reset form: form.reset();
+    form.reset();
   }
 
 })();

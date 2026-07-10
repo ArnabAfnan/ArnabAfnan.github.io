@@ -201,15 +201,26 @@
     .g1 { display: grid; grid-template-columns: 1fr; gap: 18px; }
 
     /* ── EVENT ROWS ── */
-    .ev-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-    .ev-row {
+    .ev-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+    .ev-card {
       background: var(--warm);
-      padding: 14px 16px;
+      padding: 16px 16px 18px;
+      position: relative;
+    }
+    .ev-card-row1 {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 0.8fr 1.6fr 36px;
+      grid-template-columns: 1.2fr 1fr 0.8fr 36px;
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+    .ev-card-row2 {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 0.9fr;
       gap: 10px;
       align-items: end;
     }
+    .ev-pkg-price-sub { font-size: 10px; color: var(--mist); margin-top: 3px; }
     .ev-del {
       width: 34px; height: 34px;
       background: none;
@@ -232,7 +243,7 @@
     }
     .add-ev:hover { border-color: var(--accent); }
 
-    /* ── PACKAGE GRID ── */
+    /* ── PACKAGE GRID (legacy, unused but kept for potential reuse) ── */
     .pkg-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -260,6 +271,23 @@
     }
     .pkg-name { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--charcoal); margin-bottom: 2px; }
     .pkg-price { font-size: 13px; color: var(--accent); }
+
+    /* ── EVENT PACKAGE SUMMARY (page 3) ── */
+    .ev-sum-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+    .ev-sum-row {
+      background: var(--warm);
+      padding: 12px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px;
+    }
+    .ev-sum-name { color: var(--charcoal); }
+    .ev-sum-name .sub { display: block; font-size: 11px; color: var(--mist); margin-top: 2px; }
+    .ev-sum-price { color: var(--accent); font-family: var(--serif); font-size: 16px; }
+    .ev-sum-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 16px; background: var(--charcoal); color: var(--white);
+      font-family: var(--serif); font-size: 18px; margin-top: 4px;
+    }
 
     /* ── NAV BUTTONS ── */
     .fnav {
@@ -376,8 +404,9 @@
       .topbar { padding: 14px 20px; }
       .wrap { padding: 32px 16px 60px; }
       .g2, .g3 { grid-template-columns: 1fr; }
-      .ev-row { grid-template-columns: 1fr 1fr; }
-      .ev-row .fg:nth-child(4) { grid-column: span 2; }
+      .ev-card-row1 { grid-template-columns: 1fr 1fr; }
+      .ev-card-row1 .ev-del { grid-column: span 2; justify-self: end; width: 34px; }
+      .ev-card-row2 { grid-template-columns: 1fr; }
       .pkg-grid { grid-template-columns: 1fr 1fr; }
       .inv-box { padding: 28px 20px; }
       .inv-head { flex-direction: column; gap: 16px; }
@@ -489,7 +518,7 @@
   <div class="fpage" id="pg2">
     <div class="sec-block">
       <div class="sec-title">Event details</div>
-      <p style="font-size:13px;color:var(--mist);margin-bottom:18px;">Add every event — Holud, Akd, Reception, Bou Bhat, etc.</p>
+      <p style="font-size:13px;color:var(--mist);margin-bottom:18px;">Add every event — Holud, Akd, Reception, Bou Bhat, etc. — and assign a package to each one.</p>
       <div class="ev-list" id="ev-list"></div>
       <button class="add-ev" onclick="addEv()">+ Add another event</button>
     </div>
@@ -503,20 +532,17 @@
   <div class="fpage" id="pg3">
 
     <div class="sec-block">
-      <div class="sec-title">Select <em>package</em></div>
-      <div class="pkg-grid" id="pkg-grid"></div>
+      <div class="sec-title">Package <em>summary</em></div>
+      <p style="font-size:13px;color:var(--mist);margin-bottom:18px;">Packages are assigned per event on the previous step. Review the totals below, then go back to change any event's package.</p>
+      <div class="ev-sum-list" id="ev-sum-list"></div>
     </div>
 
     <div class="sec-block">
       <div class="sec-title">Price &amp; payment</div>
       <div class="g2">
         <div class="fg">
-          <label class="fl">Custom package name (if combo)</label>
-          <input type="text" id="custom-pkg" placeholder="e.g. Grace + Drone add-on" />
-        </div>
-        <div class="fg">
-          <label class="fl">Total package price (BDT) <span class="req">*</span></label>
-          <input type="number" id="pkg-price" placeholder="e.g. 24000" oninput="calcBal('price')" />
+          <label class="fl">Total package price (BDT)</label>
+          <input type="text" id="pkg-price" readonly placeholder="—" />
         </div>
         <div class="fg">
           <label class="fl">Discount (%)</label>
@@ -577,7 +603,7 @@
    2. Name the first sheet:  Bookings
    3. Add these headers in row 1 (A1 to O1):
       Invoice No | Date | Booking Person | Phone | Email |
-      Bride | Groom | Events | Package | Total BDT |
+      Bride | Groom | Events (with packages) | Total BDT |
       Discount % | Discount BDT | Advance BDT | Balance BDT | Notes
 
    4. In the spreadsheet: Extensions → Apps Script
@@ -662,7 +688,7 @@ const PKGS = [
   { cat:'Custom',    name:'Custom / Combo',              price:0      },
 ];
 
-const EV_TYPES = ['Holud','Mehendi Night','Akd / Nikah','Biye (Wedding)','Reception','Bou Bhat','Pre-Wedding Shoot','Post-Wedding Shoot','Engagement','Other'];
+const EV_TYPES = ['Haldi Night','Mehendi Night','Akdh / Nikah','Wedding','Reception','Pre-Wedding Shoot','Post-Wedding Shoot','Engagement','Other'];
 
 /* ── STEP NAVIGATION ── */
 let curStep = 1;
@@ -671,6 +697,7 @@ let evCount = 0;
 
 function goTo(n) {
   if (n > curStep && !validate(curStep)) return;
+  if (n === 3) buildEvSummary();
   curStep = n;
   document.querySelectorAll('.fpage').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.step-tab').forEach((t, i) => {
@@ -701,22 +728,30 @@ function validate(step) {
     return ok;
   }
   if (step === 2) {
-    const rows = document.querySelectorAll('.ev-row');
+    const rows = document.querySelectorAll('.ev-card');
     if (rows.length === 0) { alert('Add at least one event.'); return false; }
+    let ok = true;
+    rows.forEach(r => {
+      const priceEl = r.querySelector('.ev-price');
+      priceEl.classList.remove('err');
+      if (priceEl.value === '' || isNaN(priceEl.value) || parseFloat(priceEl.value) < 0) {
+        priceEl.classList.add('err'); ok = false;
+      }
+    });
+    if (!ok) { alert('Please set a valid package price for every event.'); return false; }
     return true;
   }
   if (step === 3) {
-    const price   = document.getElementById('pkg-price');
     const advance = document.getElementById('advance');
     const discAmt = document.getElementById('disc-amount');
-    let ok = true;
-    [price, advance].forEach(f => {
-      f.classList.remove('err');
-      if (!f.value || isNaN(f.value) || parseFloat(f.value) < 0) { f.classList.add('err'); ok = false; }
-    });
-    if (!ok) { alert('Please enter valid price and advance amounts.'); return false; }
+    advance.classList.remove('err');
+    if (!advance.value || isNaN(advance.value) || parseFloat(advance.value) < 0) {
+      advance.classList.add('err');
+      alert('Please enter a valid advance amount.');
+      return false;
+    }
 
-    const priceVal = parseFloat(price.value) || 0;
+    const priceVal = getEventsTotal();
     const discVal  = parseFloat(discAmt.value) || 0;
     if (discVal > priceVal) {
       discAmt.classList.add('err');
@@ -735,82 +770,122 @@ function validate(step) {
 }
 
 /* ── EVENT ROWS ── */
-function addEv(pre) {
-  evCount++;
-  const div = document.createElement('div');
-  div.className = 'ev-row';
-  div.dataset.i = evCount;
-  div.innerHTML =
-    '<div class="fg">' +
-      '<label class="fl">Event type</label>' +
-      '<select class="ev-type">' +
-        EV_TYPES.map(t => '<option' + (pre && pre.type===t?' selected':'') + '>' + t + '</option>').join('') +
-      '</select>' +
-    '</div>' +
-    '<div class="fg">' +
-      '<label class="fl">Date <span class="req">*</span></label>' +
-      '<input type="date" class="ev-date" value="' + (pre ? pre.date : '') + '" />' +
-    '</div>' +
-    '<div class="fg">' +
-      '<label class="fl">Start time</label>' +
-      '<input type="time" class="ev-time" value="' + (pre ? pre.time : '') + '" />' +
-    '</div>' +
-    '<div class="fg">' +
-      '<label class="fl">Venue name &amp; area</label>' +
-      '<input type="text" class="ev-venue" placeholder="e.g. Radisson Blu, Dhaka" value="' + (pre ? pre.venue : '') + '" />' +
-    '</div>' +
-    '<button class="ev-del" onclick="delEv(this)" title="Remove">&times;</button>';
-  document.getElementById('ev-list').appendChild(div);
-}
-
-function delEv(btn) {
-  const rows = document.querySelectorAll('.ev-row');
-  if (rows.length <= 1) { alert('At least one event is required.'); return; }
-  btn.closest('.ev-row').remove();
-}
-
-function getEvents() {
-  return Array.from(document.querySelectorAll('.ev-row')).map(r => ({
-    type:  r.querySelector('.ev-type').value,
-    date:  r.querySelector('.ev-date').value,
-    time:  r.querySelector('.ev-time').value,
-    venue: r.querySelector('.ev-venue').value,
-  }));
-}
-
-/* ── PACKAGE RADIO ── */
-function buildPkgs() {
-  document.getElementById('pkg-grid').innerHTML = PKGS.map((p, i) =>
-    '<div class="pkg-opt">' +
-      '<input type="radio" name="pkg" id="pk' + i + '" value="' + i + '" onchange="selectPkg(' + i + ')">' +
-      '<label class="pkg-label" for="pk' + i + '">' +
-        '<div class="pkg-cat">' + p.cat + '</div>' +
-        '<div class="pkg-name">' + p.name + '</div>' +
-        '<div class="pkg-price">' + (p.price ? 'BDT ' + p.price.toLocaleString() : 'Enter price below') + '</div>' +
-      '</label>' +
-    '</div>'
+function pkgOptions(selectedIdx) {
+  return PKGS.map((p, i) =>
+    '<option value="' + i + '"' + (selectedIdx === i ? ' selected' : '') + '>' +
+      p.name + (p.price ? ' — BDT ' + p.price.toLocaleString() : ' (custom price)') +
+    '</option>'
   ).join('');
 }
 
-function selectPkg(i) {
-  const p = PKGS[i];
-  if (p.price) { document.getElementById('pkg-price').value = p.price; calcBal('price'); }
-  if (p.name !== 'Custom / Combo') document.getElementById('custom-pkg').value = '';
+function addEv(pre) {
+  evCount++;
+  const div = document.createElement('div');
+  div.className = 'ev-card';
+  div.dataset.i = evCount;
+  div.innerHTML =
+    '<div class="ev-card-row1">' +
+      '<div class="fg">' +
+        '<label class="fl">Event type</label>' +
+        '<select class="ev-type">' +
+          EV_TYPES.map(t => '<option' + (pre && pre.type===t?' selected':'') + '>' + t + '</option>').join('') +
+        '</select>' +
+      '</div>' +
+      '<div class="fg">' +
+        '<label class="fl">Date <span class="req">*</span></label>' +
+        '<input type="date" class="ev-date" value="' + (pre ? pre.date : '') + '" />' +
+      '</div>' +
+      '<div class="fg">' +
+        '<label class="fl">Start time</label>' +
+        '<input type="time" class="ev-time" value="' + (pre ? pre.time : '') + '" />' +
+      '</div>' +
+      '<button class="ev-del" onclick="delEv(this)" title="Remove">&times;</button>' +
+    '</div>' +
+    '<div class="ev-card-row2">' +
+      '<div class="fg">' +
+        '<label class="fl">Venue name &amp; area</label>' +
+        '<input type="text" class="ev-venue" placeholder="e.g. Radisson Blu, Dhaka" value="' + (pre ? pre.venue : '') + '" />' +
+      '</div>' +
+      '<div class="fg">' +
+        '<label class="fl">Package for this event <span class="req">*</span></label>' +
+        '<select class="ev-pkg" onchange="onPkgChange(this)">' + pkgOptions(pre ? pre.pkgIdx : 0) + '</select>' +
+      '</div>' +
+      '<div class="fg">' +
+        '<label class="fl">Price (BDT) <span class="req">*</span></label>' +
+        '<input type="number" class="ev-price" placeholder="e.g. 24000" value="' + (pre ? pre.price : (PKGS[0].price || '')) + '" oninput="onEventPriceInput()" />' +
+      '</div>' +
+    '</div>';
+  document.getElementById('ev-list').appendChild(div);
+}
+
+function onPkgChange(sel) {
+  const idx = parseInt(sel.value);
+  const card = sel.closest('.ev-card');
+  const priceEl = card.querySelector('.ev-price');
+  const p = PKGS[idx];
+  if (p.price) priceEl.value = p.price;
+  // custom package (price 0) leaves the field editable, untouched
+}
+
+function onEventPriceInput() {
+  // no-op hook for future live total preview on page 2; totals are computed on demand
+}
+
+function delEv(btn) {
+  const rows = document.querySelectorAll('.ev-card');
+  if (rows.length <= 1) { alert('At least one event is required.'); return; }
+  btn.closest('.ev-card').remove();
+}
+
+function getEvents() {
+  return Array.from(document.querySelectorAll('.ev-card')).map(r => {
+    const pkgIdx = parseInt(r.querySelector('.ev-pkg').value);
+    return {
+      type:   r.querySelector('.ev-type').value,
+      date:   r.querySelector('.ev-date').value,
+      time:   r.querySelector('.ev-time').value,
+      venue:  r.querySelector('.ev-venue').value,
+      pkgIdx: pkgIdx,
+      pkgName: PKGS[pkgIdx].name,
+      price:  parseFloat(r.querySelector('.ev-price').value) || 0,
+    };
+  });
+}
+
+function getEventsTotal() {
+  return getEvents().reduce((sum, e) => sum + e.price, 0);
+}
+
+/* ── PACKAGE SUMMARY (page 3) ── */
+function buildEvSummary() {
+  const events = getEvents();
+  const total = events.reduce((s, e) => s + e.price, 0);
+  document.getElementById('ev-sum-list').innerHTML =
+    events.map(e =>
+      '<div class="ev-sum-row">' +
+        '<div class="ev-sum-name">' + e.type +
+          '<span class="sub">' + e.pkgName + (e.venue ? ' · ' + e.venue : '') + '</span>' +
+        '</div>' +
+        '<div class="ev-sum-price">BDT ' + e.price.toLocaleString() + '</div>' +
+      '</div>'
+    ).join('') +
+    '<div class="ev-sum-total"><span>Total package price</span><span>BDT ' + total.toLocaleString() + '</span></div>';
+
+  document.getElementById('pkg-price').value = 'BDT ' + total.toLocaleString();
+  calcBal();
 }
 
 /* ── DISCOUNT + BALANCE CALCULATION ──
-   source: 'price'   → package price changed, recompute amount from % (if % set)
-           'percent' → discount % changed, recompute amount
+   source: 'percent' → discount % changed, recompute amount
            'amount'  → discount amount changed, recompute %
-           undefined → advance changed, just recompute balance
+           undefined → advance (or totals) changed, just recompute balance
 */
 function calcBal(source) {
-  const priceEl   = document.getElementById('pkg-price');
   const percentEl = document.getElementById('disc-percent');
   const amountEl  = document.getElementById('disc-amount');
   const advanceEl = document.getElementById('advance');
 
-  const price = parseFloat(priceEl.value) || 0;
+  const price = getEventsTotal();
   let percent = parseFloat(percentEl.value) || 0;
   let amount  = parseFloat(amountEl.value) || 0;
 
@@ -822,12 +897,6 @@ function calcBal(source) {
     amount = Math.min(Math.max(amount, 0), price || amount);
     percent = price > 0 ? (amount / price) * 100 : 0;
     percentEl.value = percent ? Math.round(percent * 100) / 100 : '';
-  } else if (source === 'price') {
-    // package price changed — keep the % fixed and recompute the amount, if a % is set
-    if (percent) {
-      amount = price * (percent / 100);
-      amountEl.value = amount ? Math.round(amount * 100) / 100 : '';
-    }
   }
 
   const advance  = parseFloat(advanceEl.value) || 0;
@@ -839,7 +908,23 @@ function calcBal(source) {
 /* ── HELPERS ── */
 function invNo() {
   const d = new Date();
-  return 'RC-' + d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + '-' + (Math.floor(Math.random()*900)+100);
+  const monthName = d.toLocaleString('en-US', { month: 'short' }); // "Jan"
+  const year = d.getFullYear();                                    // 2026
+  const monthKey = monthName + '-' + year;                         // "Jan-2026"
+
+  let counter = {};
+  try {
+    counter = JSON.parse(localStorage.getItem('rc_invoice_counter')) || {};
+  } catch (e) { counter = {}; }
+
+  if (counter.monthKey !== monthKey) {
+    counter = { monthKey: monthKey, count: 0 };
+  }
+  counter.count += 1;
+  localStorage.setItem('rc_invoice_counter', JSON.stringify(counter));
+
+  const bookingNo = String(counter.count).padStart(3, '0'); // "001"
+  return monthKey + '-' + bookingNo;                        // "Jan-2026-001"
 }
 function pad(n) { return String(n).padStart(2,'0'); }
 function fmtDate(iso) {
@@ -861,19 +946,13 @@ function today() {
 function buildInvoice() {
   if (!validate(3)) return;
 
-  const selPkg = document.querySelector('input[name=pkg]:checked');
-  const pkgIdx = selPkg ? parseInt(selPkg.value) : -1;
-  const autoPkg = pkgIdx >= 0 && PKGS[pkgIdx].name !== 'Custom / Combo' ? PKGS[pkgIdx].name : '';
-  const customPkg = document.getElementById('custom-pkg').value.trim();
-  const pkgName = customPkg || autoPkg || 'Custom Package';
-
-  const price       = parseFloat(document.getElementById('pkg-price').value)   || 0;
+  const events      = getEvents();
+  const price       = getEventsTotal();
   const discPercent = parseFloat(document.getElementById('disc-percent').value) || 0;
   const discAmount  = parseFloat(document.getElementById('disc-amount').value)  || 0;
   const netPrice    = Math.max(0, price - discAmount);
   const advance     = parseFloat(document.getElementById('advance').value)     || 0;
   const balance     = netPrice - advance;
-  const events      = getEvents();
   const no          = invNo();
 
   savedData = {
@@ -886,7 +965,7 @@ function buildInvoice() {
     groom:    document.getElementById('groom').value.trim(),
     bridePh:  document.getElementById('bride-ph').value.trim(),
     groomPh:  document.getElementById('groom-ph').value.trim(),
-    events, pkgName, price, discPercent, discAmount, netPrice, advance, balance,
+    events, price, discPercent, discAmount, netPrice, advance, balance,
     notes: document.getElementById('notes').value.trim(),
   };
 
@@ -896,7 +975,8 @@ function buildInvoice() {
         '<span class="sub">' + fmtDate(e.date) + (e.time ? ' &nbsp;·&nbsp; ' + fmtTime(e.time) : '') + '</span>' +
       '</td>' +
       '<td>' + (e.venue || '—') + '</td>' +
-      '<td class="right">' + (i === 0 ? 'Package total' : '—') + '</td>' +
+      '<td>' + e.pkgName + '</td>' +
+      '<td class="right">BDT ' + e.price.toLocaleString() + '</td>' +
     '</tr>'
   ).join('');
 
@@ -932,13 +1012,13 @@ function buildInvoice() {
     '</div>' +
 
     '<table class="inv-tbl">' +
-      '<thead><tr><th>Event</th><th>Venue</th><th class="right">Details</th></tr></thead>' +
+      '<thead><tr><th>Event</th><th>Venue</th><th>Package</th><th class="right">Price</th></tr></thead>' +
       '<tbody>' + evRows + '</tbody>' +
     '</table>' +
 
     '<div style="display:flex;justify-content:flex-end;">' +
       '<div class="inv-totals">' +
-        '<div class="inv-row pkg-row"><span>' + pkgName + '</span><span>BDT ' + price.toLocaleString() + '</span></div>' +
+        '<div class="inv-row pkg-row"><span>Subtotal</span><span>BDT ' + price.toLocaleString() + '</span></div>' +
         (discAmount > 0 ?
           '<div class="inv-row disc"><span>Discount (' + (Math.round(discPercent * 100) / 100) + '%)</span><span>&minus; BDT ' + discAmount.toLocaleString() + '</span></div>' +
           '<div class="inv-row"><span>Net total</span><span>BDT ' + netPrice.toLocaleString() + '</span></div>'
@@ -952,11 +1032,9 @@ function buildInvoice() {
       '<div class="inv-terms"><strong>Client Notes</strong>' + savedData.notes + '</div>' : '') +
 
     '<div class="inv-terms"><strong>Terms &amp; Conditions</strong>' +
-      '50% advance required for booking confirmation. Balance due upon raw file delivery (within 2 days of last event). ' +
-      'Final edited delivery: 2–4 weeks. Song selections for video must be submitted within 1 week of event. ' +
-      'Outside Dhaka: additional transport &amp; accommodation costs + 25% surcharge applies. ' +
-      'Social media opt-out: additional 20% of package cost.' +
-    '</div>' +
+  'The advance payment is non-refundable and non-transferable under any circumstances. ' +
+  'The remaining payment must be completed on the first day of the event.' +
+'</div>' +
 
     '<div class="inv-foot">' +
       '<div class="inv-foot-brand">Retro <em>Canvas</em></div>' +
@@ -984,7 +1062,8 @@ async function saveSheet() {
   btn.disabled = true;
 
   const evSummary = savedData.events.map(e =>
-    e.type + (e.date ? ' · ' + fmtDate(e.date) : '') + (e.venue ? ' @ ' + e.venue : '')
+    e.type + ' (' + e.pkgName + ', BDT ' + e.price.toLocaleString() + ')' +
+    (e.date ? ' · ' + fmtDate(e.date) : '') + (e.venue ? ' @ ' + e.venue : '')
   ).join(' | ');
 
   const row = [
@@ -996,7 +1075,6 @@ async function saveSheet() {
     savedData.bride,
     savedData.groom,
     evSummary,
-    savedData.pkgName,
     savedData.price,
     savedData.discPercent,
     savedData.discAmount,
@@ -1029,7 +1107,6 @@ function startNew() {
   if (!confirm('Start a new booking? This will clear the current form.')) return;
   document.querySelectorAll('input[type=text],input[type=tel],input[type=email],input[type=number],input[type=date],input[type=time],textarea').forEach(f => f.value = '');
   document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
-  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
   document.getElementById('ev-list').innerHTML = '';
   document.getElementById('sheet-msg').className = 'sheet-msg';
   evCount = 0;
@@ -1038,7 +1115,6 @@ function startNew() {
 }
 
 /* ── INIT ── */
-buildPkgs();
 addEv();
 </script>
 </body>
