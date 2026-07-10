@@ -24,6 +24,8 @@
   color: var(--charcoal);
   padding: 20px 12px;
   text-align: center;
+  text-decoration: none;
+  display: block;
   transition: background 0.25s ease, color 0.25s ease;
 }
 .cat-tab:hover { color: var(--accent); }
@@ -31,7 +33,6 @@
   background: var(--charcoal);
   color: var(--white);
 }
-
 .pkg-section-title {
   font-family: var(--serif);
   font-size: clamp(28px, 3vw, 42px);
@@ -50,7 +51,8 @@
   margin-bottom: 36px;
 }
 
-.pkg-category { display: none; }
+.pkg-category { display: block; }
+.pkg-category + .pkg-category { margin-top: 60px; }
 .pkg-category.active { display: block; }
 
 .pkg-grid-3 {
