@@ -1,5 +1,5 @@
 /* ================================================================
-   pages.css — Inner page styles (Portfolio, Pricing, About, Contact)
+   pages.css — Inner page styles (Pricing, About, Contact)
    ================================================================ */
 
 /* ── PRICING PAGE ────────────────────────────────────────────── */
@@ -33,6 +33,7 @@
   background: var(--charcoal);
   color: var(--white);
 }
+
 .pkg-section-title {
   font-family: var(--serif);
   font-size: clamp(28px, 3vw, 42px);
@@ -43,6 +44,7 @@
   letter-spacing: 0.01em;
 }
 .pkg-section-title em { font-style: italic; color: var(--accent); }
+
 .pkg-section-sub {
   text-align: center;
   font-size: 13px;
@@ -51,9 +53,10 @@
   margin-bottom: 36px;
 }
 
-.pkg-category { display: block; }
-.pkg-category + .pkg-category { margin-top: 60px; }
-.pkg-category.active { display: block; }
+/* All sections always visible — no hiding */
+.pkg-category {
+  display: block;
+}
 
 .pkg-grid-3 {
   display: grid;
@@ -187,12 +190,69 @@
   letter-spacing: 0.02em;
 }
 
+/* Divider between sections — sits OUTSIDE .pkg-category in HTML */
 .section-divider {
   border: none;
   border-top: 1px solid var(--warm);
   margin: 56px var(--gap-lg) 0;
 }
 
+/* ── SHOOT TYPE NOTICE ───────────────────────────────────────── */
+.pkg-shoot-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--charcoal);
+  color: var(--dust);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  padding: 14px var(--gap-lg);
+  margin-bottom: 0;
+  text-align: center;
+}
+.pkg-shoot-notice svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+.pkg-shoot-notice strong {
+  color: var(--white);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ── ADD-ONS SECTION LABEL ───────────────────────────────────── */
+.addon-section-label {
+  text-align: center;
+  padding: 72px var(--gap-lg) 28px;
+  border-top: 1px solid var(--warm);
+  margin-top: 56px;
+}
+.addon-section-label span {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: 0.03em;
+  display: block;
+  margin-bottom: 10px;
+}
+.addon-section-label span em {
+  font-style: italic;
+  color: var(--accent);
+}
+.addon-section-label p {
+  font-size: 13px;
+  color: var(--mist);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ── ADD-ON STRIP ────────────────────────────────────────────── */
 .addon-strip {
   background: var(--charcoal);
   padding: 32px var(--gap-lg);
@@ -229,6 +289,7 @@
   white-space: nowrap;
 }
 
+/* ── TERMS & CONDITIONS ──────────────────────────────────────── */
 .terms-section {
   margin: 56px var(--gap-lg) 0;
   padding: 44px 48px;
@@ -274,34 +335,18 @@
   text-decoration: none;
   font-weight: 500;
 }
-/* ── SHOOT TYPE NOTICE ───────────────────────────────────────── */
-.pkg-shoot-notice {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--charcoal);
-  color: var(--dust);
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  padding: 14px var(--gap-lg);
-  margin-bottom: 48px;
+
+/* ── PRICING BOTTOM CTA ──────────────────────────────────────── */
+.pricing-bottom-cta {
+  padding: 60px var(--gap-lg);
   text-align: center;
+  border-top: 1px solid var(--warm);
+  margin-top: 56px;
 }
-
-.pkg-shoot-notice svg {
-  color: var(--accent);
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-}
-
-.pkg-shoot-notice strong {
-  color: var(--white);
-  font-weight: 500;
-  letter-spacing: 0.03em;
+.pricing-bottom-cta p {
+  font-size: 14px;
+  color: var(--mist);
+  margin-bottom: 24px;
 }
 
 /* ── ABOUT PAGE ──────────────────────────────────────────────── */
@@ -310,7 +355,6 @@
   grid-template-columns: 1fr 1fr;
   min-height: 80vh;
 }
-
 .about-image-block {
   background: var(--warm);
   overflow: hidden;
@@ -323,7 +367,6 @@
   height: 100%;
   object-fit: cover;
 }
-
 .about-text-block {
   padding: 80px var(--gap-lg);
   display: flex;
@@ -401,7 +444,6 @@
   transition: none;
 }
 .team-card:hover { transform: none; }
-
 .team-badge {
   display: inline-block;
   position: static;
@@ -415,7 +457,6 @@
   margin-bottom: 8px;
   white-space: nowrap;
 }
-
 .team-avatar {
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -465,7 +506,6 @@
   max-width: 1100px;
   margin: 0 auto;
 }
-
 .contact-info-block h2 {
   font-family: var(--serif);
   font-size: clamp(30px, 3.5vw, 48px);
@@ -481,7 +521,6 @@
   line-height: 1.8;
   margin-bottom: 40px;
 }
-
 .contact-details {
   display: flex;
   flex-direction: column;
@@ -495,7 +534,6 @@
   color: var(--accent);
 }
 .cd-value { font-size: 15px; color: var(--charcoal); }
-
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -504,14 +542,12 @@
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 7px; }
-
 .form-label {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--mist);
 }
-
 .form-input,
 .form-select,
 .form-textarea {
@@ -530,9 +566,7 @@
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus { border-color: var(--accent); }
-
 .form-textarea { resize: vertical; min-height: 120px; }
-
 .form-submit {
   font-family: var(--sans);
   font-size: 12px;
@@ -547,7 +581,6 @@
   transition: background 0.2s;
 }
 .form-submit:hover { background: var(--accent); }
-
 .form-success {
   display: none;
   font-size: 14px;
@@ -556,16 +589,14 @@
 }
 
 /* ================================================================
-   RESPONSIVE — all breakpoints combined
+   RESPONSIVE
    ================================================================ */
 
 @media (max-width: 1100px) {
-  /* Pricing */
   .pkg-grid-4 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 960px) {
-  /* Pricing */
   .category-tabs { grid-template-columns: repeat(2, 1fr); margin: 32px 0 0; }
   .pkg-grid-3,
   .pkg-grid-4,
@@ -576,35 +607,29 @@
   .addon-strip-item { flex-direction: column; align-items: flex-start; gap: 8px; }
   .terms-section { margin: 44px 0 0; padding: 32px 24px; }
   .section-divider { margin: 44px 0 0; }
+  .addon-section-label { padding: 56px 24px 24px; }
+  .pricing-bottom-cta { padding: 48px 24px; margin-top: 44px; }
 
-  /* About */
   .about-layout { grid-template-columns: 1fr; }
   .about-image-block { min-height: 50vw; }
   .about-text-block { padding: 52px 24px; }
   .values-strip { grid-template-columns: 1fr; }
   .value-item { border-right: none; border-bottom: 1px solid var(--warm); }
 
-  /* Team */
   .team-section { padding: var(--gap-lg) 24px 0; }
   .team-grid { grid-template-columns: repeat(2, 1fr); margin: var(--gap-md) 24px var(--gap-lg); gap: 20px; }
 
-  /* Contact */
   .contact-layout { grid-template-columns: 1fr; padding: var(--gap-lg) 24px; gap: 48px; }
   .form-row { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
-
-  /* Pricing */
   .category-tabs { grid-template-columns: repeat(2, 1fr); }
   .cat-tab { padding: 16px 12px; font-size: 13px; }
   .pkg-card { padding: 32px 24px 36px; }
-  .pkg-shoot-notice {
-    font-size: 12px;
-    padding: 12px 16px;
-    gap: 8px;
-  }
-  /* Team */
+  .pkg-shoot-notice { font-size: 12px; padding: 12px 16px; gap: 8px; }
+  .addon-section-label { padding: 44px 16px 20px; }
+  .pricing-bottom-cta { padding: 40px 16px; }
+
   .team-grid { grid-template-columns: 1fr; }
-  
 }
