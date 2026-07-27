@@ -6,7 +6,7 @@
 
 .category-tabs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 3px;
   background: var(--warm);
   padding: 3px;
@@ -210,7 +210,7 @@
   font-weight: 300;
   letter-spacing: 0.05em;
   padding: 14px var(--gap-lg);
-  margin-bottom: 0;
+  margin: 0 var(--gap-lg) 36px;
   text-align: center;
 }
 .pkg-shoot-notice svg {
@@ -342,6 +342,9 @@
   text-align: center;
   border-top: 1px solid var(--warm);
   margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .pricing-bottom-cta p {
   font-size: 14px;
@@ -627,7 +630,7 @@
   .category-tabs { grid-template-columns: repeat(2, 1fr); }
   .cat-tab { padding: 16px 12px; font-size: 13px; }
   .pkg-card { padding: 32px 24px 36px; }
-  .pkg-shoot-notice { font-size: 12px; padding: 12px 16px; gap: 8px; }
+  .pkg-shoot-notice { font-size: 12px; padding: 12px 16px; gap: 8px; margin: 0 0 28px; }
   .addon-section-label { padding: 44px 16px 20px; }
   .pricing-bottom-cta { padding: 40px 16px; }
 
