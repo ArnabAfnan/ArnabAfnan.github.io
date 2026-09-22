@@ -7,7 +7,10 @@
    Change ONE value here and it updates everywhere on the site.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+/* Fonts are now loaded via <link rel="preconnect"> + <link rel="stylesheet">
+   in each page's <head> — see fonts-head-snippet.html.
+   NEVER use @import for Google Fonts here again: it forces a fully serial
+   fetch chain (this CSS → font CSS → font files) before anything can paint. */
 
 /* ── DESIGN TOKENS ─────────────────────────────────────────────
    CUSTOMIZE: Change these hex values to restyle the whole site

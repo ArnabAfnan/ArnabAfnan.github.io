@@ -129,13 +129,22 @@
 .album-cover {
   width: 100%;
   aspect-ratio: 3 / 4;
-  background-size: cover;
-  background-position: center;
   position: relative;
   overflow: hidden;
+  background: var(--warm); /* placeholder color while the lazy image loads */
   transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .album-card:hover .album-cover { transform: scale(1.04); }
+
+.album-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 
 .album-cover-overlay {
   position: absolute;

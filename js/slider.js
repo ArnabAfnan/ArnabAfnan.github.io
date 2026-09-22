@@ -84,6 +84,25 @@
   // ── MARK FIRST SLIDE ACTIVE ───────────────────────────────────
   slides[0].classList.add('active');
 
+  // ── LAZY-LOAD REMAINING SLIDE IMAGES ────────────────────────────
+  // Slide 1's image is already loaded eagerly via CSS + <link rel="preload">
+  // since it's the LCP element. The rest wait until the browser is idle
+  // so they never compete with first paint / LCP on slow connections.
+  function loadRemainingSlideImages() {
+    for (let i = 1; i < slides.length; i++) {
+      const bg = slides[i].getAttribute('data-bg');
+      if (bg) {
+        slides[i].style.backgroundImage = 'url(' + bg + ')';
+        slides[i].removeAttribute('data-bg');
+      }
+    }
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadRemainingSlideImages, { timeout: 2000 });
+  } else {
+    setTimeout(loadRemainingSlideImages, 1000);
+  }
+
   // ── ARROW BUTTONS ─────────────────────────────────────────────
   if (prevBtn) prevBtn.addEventListener('click', function () { prev(); resetTimer(); });
   if (nextBtn) nextBtn.addEventListener('click', function () { next(); resetTimer(); });

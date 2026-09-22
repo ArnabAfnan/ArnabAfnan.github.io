@@ -39,6 +39,11 @@
    Example: background-image: url('../images/hero1.jpg');
    Keep background-size: cover; background-position: center;
 ──────────────────────────────────────────────────────────────── */
+/* Only the FIRST slide's image loads eagerly via CSS — this is the LCP
+   element and is also <link rel="preload"> in index.html <head>.
+   Slides 2+ get their background-image assigned by slider.js shortly
+   after load, using the data-bg attribute on each .slide element, so
+   they don't compete with the critical first paint. */
 .slide-1 {
     background-image: url('../source/hero1.avif');
     background-size: cover;
@@ -46,45 +51,15 @@
     background-repeat: no-repeat;
 }
 
-.slide-2 {
-    background-image: url('../source/hero2.avif');
+.slide-2, .slide-3, .slide-4, .slide-5, .slide-6, .slide-7 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.slide-3 {
-    background-image: url('../source/hero3.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slide-4 {
-    background-image: url('../source/hero6.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.slide-5 {
-    background-image: url('../source/hero5.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.slide-6 {
-    background-image: url('../source/hero6.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.slide-7 {
-    background-image: url('../source/hero7.avif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-/* Ken Burns zoom animation per slide */
+/* Ken Burns zoom animation — ONLY runs on the active slide.
+   Previously this ran on all 4 slides simultaneously, forever, even
+   the 3 that were off-screen — constant GPU/CPU cost for nothing. */
 .slide::before {
   content: '';
   position: absolute;
@@ -92,7 +67,15 @@
   background: inherit;
   background-size: cover;
   background-position: center;
-  animation: kenBurns 8s ease-in-out infinite alternate;
+  animation-name: kenBurns;
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: paused;
+}
+.slide.active::before {
+  animation-play-state: running;
 }
 
 @keyframes kenBurns {

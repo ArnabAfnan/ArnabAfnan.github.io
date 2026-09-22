@@ -346,7 +346,8 @@ document.addEventListener('DOMContentLoaded', function () {
     albumsGrid.innerHTML = PORTRAIT_ALBUMS.map(function (album, idx) {
       return (
         '<div class="album-card" data-idx="' + idx + '">' +
-          '<div class="album-cover" style="background-image:url(\'' + album.cover + '\')">' +
+          '<div class="album-cover">' +
+            '<img class="album-cover-img" src="' + album.cover + '" alt="' + album.couple + ' cover" loading="lazy" decoding="async" />' +
             '<div class="album-cover-overlay">' +
               '<span class="album-count">' + album.photos.length + ' photos</span>' +
               '<span class="album-open-hint">View Album &#8594;</span>' +
