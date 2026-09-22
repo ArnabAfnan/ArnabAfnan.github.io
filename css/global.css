@@ -237,6 +237,21 @@ body {
   margin-right: auto;
 }
 
+.page-banner-note {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--mist);
+  max-width: none;
+}
+.page-banner-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.page-banner-note a:hover { color: var(--charcoal); }
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 #site-footer {
   background: var(--charcoal);

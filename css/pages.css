@@ -149,6 +149,18 @@
   vertical-align: super;
 }
 
+.pkg-price-alt {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--mist);
+  letter-spacing: 0.04em;
+  margin-top: -14px;
+  margin-bottom: 20px;
+}
+.pkg-card.dark .pkg-price-alt,
+.pkg-card.accent-bg .pkg-price-alt { color: var(--dust); }
+
 .pkg-divider {
   border: none;
   border-top: 1px solid var(--warm);
